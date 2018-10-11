@@ -10,7 +10,8 @@
         "genealabs/laravel-caffeine": "^0.7.1",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "miroc/laravel-adminer": "^4.5"
+        "miroc/laravel-adminer": "^4.5",
+        "tightenco/ziggy": "v0.6.8.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

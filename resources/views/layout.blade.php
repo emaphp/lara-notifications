@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        @routes
         <meta charset="utf-8">
         <title>@yield('title','default')</title>
         <link rel="stylesheet" href={{asset("/css/app.css")}}>
