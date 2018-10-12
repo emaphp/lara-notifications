@@ -16,8 +16,8 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::user() || $request->user()->type != 'admin') {
-            return redirect('login');
+        if ($request->user()->type != 'admin') {
+            return redirect('home')->with('status',"Access denied. User is not admin.");
         }
         return $next($request);
     }

@@ -16,7 +16,7 @@ class CheckEmployee
     public function handle($request, Closure $next)
     {
         if ($request->user()->type != 'employee') {
-            return redirect('home')->with('status','User not authenticated, access denied.');
+            return redirect('home')->with('status','Access denied. Employee users only.');
         }
         return $next($request);
     }
