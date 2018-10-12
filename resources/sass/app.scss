@@ -12,3 +12,34 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+body{
+  background-color: #eaf6ec;
+}
+
+.card {
+  margin-top: 60px;
+}
+
+.card-header {
+  color: white;
+  background-color: #5ebd74;
+}
+
+.card-title {
+  font-size: 2.0em;
+}
+
+.bg-green {
+  background-color: #28a745;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+$theme-colors: map-remove($theme-colors, "primary");
+
+$theme-colors: (
+  "primary": #28a745
+);
