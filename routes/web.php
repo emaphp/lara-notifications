@@ -13,12 +13,18 @@
 
 use App\Http\Middleware\CheckAdmin;
 
-Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
-
-Route::get('/', function () {
-    return view('index');
-})->middleware('admin');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
+
+});
+
+
+Route::get('/', function () {
+    return view('index');
+});
