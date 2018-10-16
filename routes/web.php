@@ -13,8 +13,8 @@
 
 use App\Http\Middleware\CheckAdmin;
 
-
-Auth::routes();
+//Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -35,3 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/profile', function () {
+
+})->middleware('verified');
