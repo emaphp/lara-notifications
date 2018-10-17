@@ -16,8 +16,8 @@ use App\Http\Middleware\CheckAdmin;
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
 
 Route::get('/', function () {
-    return view('index');
-})->middleware('admin');
+    return view('home');
+})->middleware('auth');
 
 Auth::routes();
 

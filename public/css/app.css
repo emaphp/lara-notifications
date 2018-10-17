@@ -10497,3 +10497,11 @@ body {
   color: white;
 }
 
+.material-icons {
+  color: white;
+}
+
+.material-icons.colorBlack {
+  color: black;
+}
+
