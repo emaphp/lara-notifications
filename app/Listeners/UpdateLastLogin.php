@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Events\UserHasLogin;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Auth\Events\Login;
 
 use Carbon\Carbon;
 
@@ -23,10 +23,10 @@ class UpdateLastLogin
     /**
      * Handle the event.
      *
-     * @param  UserHasLogin  $event
+     * @param  Login  $event
      * @return void
      */
-    public function handle(UserHasLogin $event)
+    public function handle(Login $event)
     {
         //
         $user = $event->user;
