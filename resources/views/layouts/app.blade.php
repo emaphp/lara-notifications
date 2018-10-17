@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -33,25 +34,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <li class="nav-item" style="width:fit-content">
+                                <a class="nav-link" href="{{ route('login') }}"><span style="float: left;"><i class="material-icons">person</i></span><span style="float: right;"> {{ __('Login') }}</span></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" style="width:fit-content">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}"><span style="float: left;"><i class="material-icons">person_add</i></span> <span style="float: right;">  {{ __('Register') }}</span></a>
                                 @endif
                             </li>
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" style="width:fit-content">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <span style="float: left;"><i class="material-icons">person</i></span> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                                     document.getElementById('logout-form').submit();" style="width:fit-content">
+                                        <span style="float: left;"><i class="material-icons colorBlack">exit_to_app</i></span> <span style="float: right;">{{ __('Logout') }}</span>
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
