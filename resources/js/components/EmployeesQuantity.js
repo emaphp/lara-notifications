@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Card } from '@shopify/polaris';
+import { AppProvider, Card } from '@shopify/polaris';
 import axios from 'axios';
 
 export default class EmployeesQuantity extends Component {
@@ -24,9 +24,11 @@ export default class EmployeesQuantity extends Component {
 
     render() {
         return(
-            <Card title="Employees" sectioned>
-                <p>Total employees: { this.state.quantity }</p>
-            </Card>
+            <AppProvider>
+                <Card title="Employees" sectioned>
+                    <p>Total employees: { this.state.quantity }</p>
+                </Card>
+            </AppProvider>
         )
     }
 }

@@ -1,4 +1,7 @@
 
+// Polaris
+@import '~@shopify/polaris/styles.css';
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -8,17 +11,20 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Polaris
-@import '~@shopify/polaris/styles.css';
+body {
+  background-color: #eaf6ec;
+  font-size: 1.4rem !important;
+}
+
+.content {
+  margin-top: 45px;
+}
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-body{
-  background-color: #eaf6ec;
-}
 
 .card {
   margin-top: 60px;
