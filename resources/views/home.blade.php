@@ -19,5 +19,8 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div id="employees-quantity"></div>
+    </div>
 </div>
 @endsection

@@ -1,0 +1,37 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { Card } from '@shopify/polaris';
+import axios from 'axios';
+
+export default class EmployeesQuantity extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state  = {
+            quantity: 0
+        };
+    }
+
+    componentDidMount() {
+        var self = this;
+        axios.get(this.props.employeesCountUrl)
+            .then(response => {
+                self.setState({ quantity: response.data.quantity });
+            })
+            .catch(err => console.log(err));
+    }
+
+
+    render() {
+        return(
+            <Card title="Employees" sectioned>
+                <p>Total employees: { this.state.quantity }</p>
+            </Card>
+        )
+    }
+}
+
+
+if (document.getElementById('employees-quantity')) {
+    ReactDOM.render(<EmployeesQuantity employeesCountUrl={'/api/employees/quantity'}/>, document.getElementById('employees-quantity'));
+}
