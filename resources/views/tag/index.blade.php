@@ -1,0 +1,5 @@
+<div>
+@foreach($tags as $tag)
+<p>{{ $tag->name }}</p>
+@endforeach
+</div>

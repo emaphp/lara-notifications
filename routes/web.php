@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
+
+        Route::resource('tag', 'TagController');
     
     });
 
