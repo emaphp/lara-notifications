@@ -43,12 +43,3 @@
         </div>
     </nav>
 @endsection
-
-
-@section('css')
-    <style>
-        .navbar-brand {
-            font-size: 1.4rem !important;
-        }
-    </style>
-@endsection
