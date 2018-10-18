@@ -11,15 +11,24 @@
 |
 */
 
-use App\Http\Middleware\CheckAdmin;
+// This route has the auth middleware defined in the constructor
+Route::get('/home', 'HomeController@index')->name('home');
 
-//Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'verified'], function () {
+    Route::get('/profile', function () {
+
+    });
+});
 
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('home');
+    });
+
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
     
@@ -30,12 +39,3 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 });
-
-
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
-
-Route::get('/profile', function () {
-
-})->middleware('verified');
