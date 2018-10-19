@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EmployeeController extends Controller
 {
@@ -13,11 +14,13 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    use SoftDeletes;
+
     public function index()
     {
-        $users = User::where("type","employee")->get();
-
-        return view('admin/employees.index', compact('users'));
+        $users = User::withTrashed()->where("type","employee")->get();
+        return view('admin.employees.index', compact('users'));
     }
 
     /**
@@ -49,9 +52,9 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::withTrashed()->find($id);
 
-        return view('admin/employees.show', compact('user'));
+        return view('admin.employees.show', compact('user'));
     }
 
     /**
@@ -85,6 +88,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('admin.employees.index')->with('success','Employee has ben successfully disabled');
     }
 }

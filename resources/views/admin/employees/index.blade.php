@@ -21,6 +21,7 @@
                                     <th>Email</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Estate</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -28,14 +29,17 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->profile->first_name}}</td>
-                                    <td>{{ $user->profile->last_name }}</td>
+                                    <td>{{ $user->profile ? $user->profile->first_name : "-" }}</td>
+                                    <td>{{ $user->profile ? $user->profile->last_name : "-" }}</td>
                                     <td>
-                                        <a class="btn btn-success" href="{{ URL::to('admin/employees/' . $user->id) }}">View</a>
-                                        <a class="btn btn-success disabled" href="{{ URL::to('admin/employees/' . $user->id . '/edit') }}">Enable/Disable</a>
-
+                                        @if ($user->trashed())
+                                            {{ __('Disabled') }}
+                                        @else
+                                            {{ __('Enabled') }}
+                                        @endif
                                     </td>
-                                </tr>
+                                    <td>
+                                        <a class="btn btn-success" href="{{ route('admin.employees.show', $user->id) }}">View</a>
                             @endforeach
                             </tbody>
                         </table>
