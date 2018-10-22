@@ -1,4 +1,4 @@
-@section('nav')
+
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green flex-md-nowrap p-0 shadow">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -42,4 +42,3 @@
             </div>
         </div>
     </nav>
-@endsection

@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'as' => 'admin.' ], function () {
         Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
+
+        Route::resource('tags', 'Admin\TagController');
         Route::resource('employees', 'Admin\EmployeeController');
         Route::resource('events', 'Admin\EventController');
     });
