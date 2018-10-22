@@ -7,9 +7,10 @@
             {{ method_field('PUT') }}
             <div class="form-group">
             <label for="name_tag">Name:</label>
-            <input type="text" name="name_tag" id="name_tag" class="form-control" value="{{ $tag->name }}">
+            <input type="text" name="name_tag" id="name_tag" class="form-control" value="{{ $tag->name }}" required>
             </div>
-            <p><button type="submit" class="btn btn-primary" />Save</button>
+            <p><button type="submit" class="btn btn-primary" /><i class="fa fa-save"></i> Save</button>
         </form>
+        <a class="btn btn-link" href="{{ route('tags.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a> 
     </div>
     @endsection

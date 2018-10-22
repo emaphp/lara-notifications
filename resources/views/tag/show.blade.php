@@ -9,37 +9,9 @@
             <label for="name_tag">Name:</label>
             <input type="text" name="name_tag" id="name_tag" class="form-control" value="{{ $tag->name }}" readOnly>
             </div>
-            <p><button type="submit" class="btn btn-primary" />Remove</button>
+            <p><button type="submit" class="btn btn-primary" /><i class="fa fa-minus-circle"></i> Remove</button>
         </form>
-
-
-
-        
-        <div class="card bg-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">Tag detail</div>
-                <div class="card-body">
-                    <h5 class="card-title">Tag Name</h5>
-                    <p class="card-text">{{ $tag->name }}</p>
-                </div>
-            </div>
-
-
-
-
-
-        
-        <div class="card">
-        <div class="card-header">Tag Detail</div>
-            <div class="card-body">
-                Tag Name : {{ $tag->name }}
-            </div>
-        </div>
-        <br>
-        <form action="{{ route('tags.destroy',  $tag->id) }}" method="post">
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
-            <button type="submit" class="btn btn-primary" />Remove</button>
-        </form>
+        <a class="btn btn-link" href="{{ route('tags.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a> 
     </div>
 
     </div>
