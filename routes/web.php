@@ -25,6 +25,10 @@ Route::group(['middleware' => 'verified'], function () {
 
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('home');
+    });
+
     Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'as' => 'admin.' ], function () {
         Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
 
