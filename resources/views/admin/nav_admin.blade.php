@@ -1,28 +1,34 @@
-<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" id="nav-admin">
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active" href="#">
                     <span data-feather="home"></span>
-                    Dashboard <span class="sr-only">(current)</span>
+                    Home
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="file"></span>
-                    Option 1
+                    Users
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
-                    Option 2
+                    Events
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="users"></span>
-                    Option 3
+                    Places
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="users"></span>
+                    Tags
                 </a>
             </li>
         </ul>

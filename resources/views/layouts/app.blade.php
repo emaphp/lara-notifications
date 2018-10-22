@@ -26,10 +26,22 @@
 <body>
     <div id="app">
 
-        @yield('nav')
+        @include('layouts.nav')
 
-        <div class="container">
-            @yield('content')
+        <div class="container-fluid" id="wrapper">
+            <div class="row" style="height: 100%">
+                @if(Auth::user())
+                    @if(Auth::user()->type == 'admin')
+                        @include('admin.nav_admin')
+                    @elseif(Auth::user()->type == 'employee')
+                        @include('employee.nav_employee')
+                    @endif
+                @endif
+
+                <div class="col-md-10">
+                    @yield('content')
+                </div>
+            </div>
         </div>
     </div>
 </body>
