@@ -1,0 +1,24 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @property mixed name
+ * @property false|int start_date
+ * @property false|int end_date
+ * @property mixed place_id
+ * @property mixed description
+ * @property integer author_id
+ * @property mixed start_time
+ * @property mixed end_time
+ */
+class Event extends Model
+{
+
+    public function post()
+    {
+        return $this->belongsTo('App\User');
+    }
+}

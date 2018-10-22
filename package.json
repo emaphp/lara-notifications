@@ -21,9 +21,11 @@
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
         "react": "^16.2.0",
-        "react-dom": "^16.2.0"
+        "react-dom": "^16.2.0",
+        "summernote": "^0.8.10"
     },
     "dependencies": {
-        "@shopify/polaris": "^2.12.1"
+        "@shopify/polaris": "^2.12.1",
+        "codemirror": "^5.40.2"
     }
 }
