@@ -1,21 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Tag;
+use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TagController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    use SoftDeletes;
+
     public function index()
     {
-        $tags = Tag::all();
-        return view('tag.index', compact('tags'));
+        $users = User::withTrashed()->where("type","employee")->get();
+        return view('admin.employees.index', compact('users'));
     }
 
     /**
@@ -25,7 +30,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('tag.create');
+        //
     }
 
     /**
@@ -37,12 +42,6 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //
-        $tag = new Tag;
-        $tag->name = $request->name_tag;
-        $tag->save();
-
-        return redirect()->route('tags.index')->with('status','Tag created successfully.');  
-
     }
 
     /**
@@ -53,8 +52,9 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        $tag = Tag::find($id);
-        return view('tag.show', compact('tag'));
+        $user = User::withTrashed()->find($id);
+
+        return view('admin.employees.show', compact('user'));
     }
 
     /**
@@ -65,8 +65,7 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::find($id);
-        return view('tag.edit', compact('tag'));
+        //
     }
 
     /**
@@ -78,10 +77,7 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = Tag::find($id);
-        $tag->name = $request->name_tag;
-        $tag->save();
-        return redirect()->route('tags.index')->with('status','Tag edited successfully.');  
+        //
     }
 
     /**
@@ -92,9 +88,8 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $tag = Tag::find($id);
-        $tag->delete();
-        return redirect()->route('tags.index')->with('status','Tag removed successfully.');  
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('admin.employees.index')->with('success','Employee has ben successfully disabled');
     }
 }

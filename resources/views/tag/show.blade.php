@@ -2,7 +2,7 @@
     @section('content')
     <div class="container" style="margin-top:45px;">
     <h1>Tag detail</h1>
-        <form action="{{ route('tags.destroy',  $tag->id) }}" method="post">
+        <form action="{{ route('admin.tags.destroy',  $tag->id) }}" method="post">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
             <div class="form-group">
@@ -11,7 +11,7 @@
             </div>
             <p><button type="submit" class="btn btn-primary" /><i class="fa fa-minus-circle"></i> Remove</button>
         </form>
-        <a class="btn btn-link" href="{{ route('tags.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a> 
+        <a class="btn btn-link" href="{{ route('admin.tags.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a> 
     </div>
 
     </div>

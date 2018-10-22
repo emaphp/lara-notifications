@@ -22,11 +22,14 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Luis Gomez',
                 'email' => 'empleado1@alasit.com',
                 'password' => bcrypt('secret'),
-                'type' => 'employee', 
+                'type' => 'employee',
             ]
         ];
-        // $this->call(UsersTableSeeder::class);
 
         DB::table('users')->insert($users);
+
+        $this->call([
+            ProfilesTableSeeder::class
+        ]);
     }
 }
