@@ -26,7 +26,7 @@ Route::group(['middleware' => 'verified'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
-        return view('home');
+        return view('/home');
     });
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'as' => 'admin.' ], function () {
@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('tags', 'Admin\TagController');
         Route::resource('employees', 'Admin\EmployeeController');
+        Route::resource('events', 'Admin\EventController');
     });
 
     Route::group(['prefix' => 'employee', 'middleware' => 'employee'], function () {

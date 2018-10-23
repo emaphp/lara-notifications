@@ -10,6 +10,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~summernote/dist/summernote-bs4.css';
 
 body {
   background-color: #eaf6ec;
@@ -71,3 +72,6 @@ $theme-colors: (
   "primary": #28a745
 );
 
+.note-editor.note-frame {
+  margin-top: 0px;
+}
