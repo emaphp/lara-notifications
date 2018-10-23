@@ -31,7 +31,7 @@
         @include('layouts.nav')
 
         <div class="container-fluid" id="wrapper">
-            <div class="row" style="height: 100%">
+            <div class="row" style="min-height: 100%">
                 @if(Auth::user())
                     @if(Auth::user()->type == 'admin')
                         @include('admin.nav_admin')

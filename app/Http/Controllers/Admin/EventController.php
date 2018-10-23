@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
@@ -39,6 +40,19 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'endDate' => 'nullable|after_or_equal:startDate',
+            'endTime' => 'nullable|after:startTime'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('admin/events/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $event= new Event;
         $event->name=$request->get('name');
         $event->start_date = $request->get('startDate');
