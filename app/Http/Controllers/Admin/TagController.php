@@ -82,7 +82,7 @@ class TagController extends Controller
         $tag = Tag::find($id);
         $tag->name = $request->name_tag;
         $tag->save();
-        return redirect()->route('tags.index')->with('status','Tag edited successfully.');  
+        return redirect()->route('admin.tags.index')->with('status','Tag edited successfully.');
     }
 
     /**
@@ -96,6 +96,6 @@ class TagController extends Controller
         //
         $tag = Tag::find($id);
         $tag->delete();
-        return redirect()->route('tags.index')->with('status','Tag removed successfully.');  
+        return redirect()->route('admin.tags.index')->with('status','Tag removed successfully.');
     }
 }
