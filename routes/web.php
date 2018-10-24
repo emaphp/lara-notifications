@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('tags', 'Admin\TagController');
         Route::resource('employees', 'Admin\EmployeeController');
+        Route::resource('places', 'Admin\PlaceController');
     });
 
     Route::group(['prefix' => 'employee', 'middleware' => 'employee'], function () {
