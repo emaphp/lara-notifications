@@ -18,5 +18,6 @@ require('./components/EmployeesQuantity');
 
 $(document).ready(function() {
     $('#description').summernote();
-});
 
+    $('#guests').select2();
+});
