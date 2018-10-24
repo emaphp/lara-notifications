@@ -22,6 +22,7 @@
         "popper.js": "^1.12",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
+        "select2": "^4.0.6-rc.1",
         "summernote": "^0.8.10"
     },
     "dependencies": {

@@ -22,6 +22,7 @@
                 <th>End Date</th>
                 <th>End Time</th>
                 <th>Place</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                         <td>{{ $event->end_date }}</td>
                         <td>{{ $event->end_time }}</td>
                         <td>{{ $event->place_id }}</td>
+                        <td><a class="btn btn-primary" href="{{ route('admin.events.edit', $event->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
                     </tr>
                 @endforeach
             </tbody>
