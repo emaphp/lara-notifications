@@ -113,7 +113,7 @@ class EventController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return redirect('admin/events/create')
+            return redirect('admin/events/'. $id .'/edit')
                 ->withErrors($validator)
                 ->withInput();
         }
