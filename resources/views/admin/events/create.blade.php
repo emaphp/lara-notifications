@@ -13,43 +13,46 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label for="startDate">Start Date:</label>
-                    <input type="date" id="startDate" class="form-control" name="startDate">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label for="insertStartTime">Insert start time?</label>
-                    <input type="checkbox" name="insertStartTime" id="insertStartTime" checked>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label for="startTime">Start Time:</label>
-                    <input type="time" id="startTime" class="form-control" name="startTime">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label for="endDate">End Date:</label>
-                    <input type="date" id="endDate" class="form-control" name="endDate">
-                    @if ($errors->has('endDate'))
-                        <div class="alert alert-danger">{{ $errors->first('endDate') }}</div>
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" id="start_date" class="form-control" name="start_date">
+                    @if ($errors->has('start_date'))
+                        <div class="alert alert-danger">{{ $errors->first('start_date') }}</div>
                     @endif
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label for="insertEndTime">Insert end time?</label>
-                    <input type="checkbox" name="insertEndTime" id="insertEndTime" checked>
+                    <label for="insert_start_time">Insert start time?</label>
+                    <input type="checkbox" name="insert_start_time" id="insert_start_time" checked>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label for="endTime">End Time:</label>
-                    <input type="time" id="endTime" class="form-control" name="endTime">
-                    @if ($errors->has('endTime'))
-                        <div class="alert alert-danger">{{ $errors->first('endTime') }}</div>
+                    <label for="start_time">Start Time:</label>
+                    <input type="time" id="start_time" class="form-control" name="start_time">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="end_date">End Date:</label>
+                    <input type="date" id="end_date" class="form-control" name="end_date">
+                    @if ($errors->has('end_date'))
+                        <div class="alert alert-danger">{{ $errors->first('end_date') }}</div>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="insert_end_time">Insert end time?</label>
+                    <input type="checkbox" name="insert_end_time" id="insert_end_time" checked>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="end_time">End Time:</label>
+                    <input type="time" id="end_time" class="form-control" name="end_time">
+                    @if ($errors->has('end_time'))
+                        <div class="alert alert-danger">{{ $errors->first('end_time') }}</div>
                     @endif
                 </div>
             </div>
@@ -76,22 +79,22 @@
     </div>
 @endsection
 
-@section('scripts')
+@section('javascript')
+    @parent
+
     <script>
         window.addEventListener('DOMContentLoaded', function () {
-            var chkStartTime = document.getElementById('insertStartTime');
-            var startTime = document.getElementById('startTime');
-            chkStartTime.addEventListener('click', function() {
-                var checked = chkStartTime.checked;
-                startTime.disabled=!checked;
+            var chk_start_time = document.getElementById('insert_start_time');
+            var start_time = document.getElementById('start_time');
+            chk_start_time.addEventListener('click', function() {
+                var checked = chk_start_time.checked;
+                start_time.disabled=!checked;
             });
-        });
-        window.addEventListener('DOMContentLoaded', function () {
-            var chkEndTime = document.getElementById('insertEndTime');
-            var endTime = document.getElementById('endTime');
-            chkEndTime.addEventListener('click', function() {
-                var checked = chkEndTime.checked;
-                endTime.disabled=!checked;
+            var chk_end_time = document.getElementById('insert_end_time');
+            var end_time = document.getElementById('end_time');
+            chk_end_time.addEventListener('click', function() {
+                var checked = chk_end_time.checked;
+                end_time.disabled = !checked;
             });
         });
     </script>
