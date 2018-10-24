@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert($users);
 
         $this->call([
-            ProfilesTableSeeder::class
+            ProfilesTableSeeder::class,
+            TagTableSeeder::class
         ]);
     }
 }

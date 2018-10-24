@@ -43,11 +43,5 @@ class TagTableSeeder extends Seeder
         ];
 
         DB::table('tags')->insert($tags);
-
-        $this->call([
-            TagTableeeder::class
-        ]);
-
-
     }
 }
