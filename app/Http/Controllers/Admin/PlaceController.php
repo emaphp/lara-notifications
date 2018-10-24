@@ -48,10 +48,8 @@ class PlaceController extends Controller
         $place->type = $request->place_type;
         $place->save();
 
-        if (count($request->place_tags) > 0) {
-            foreach($request->place_tags as $tag) {
-                $place->tags()->attach($tag, ['taggable_type'=> 'App\Place']);
-            }
+        if ($request->place_tags) {
+            $place->tags()->attach($request->place_tags, ['taggable_type'=> 'App\Place']);
         }
         return redirect()->route('admin.places.index')->with('status','Place created successfully.');  
     }
