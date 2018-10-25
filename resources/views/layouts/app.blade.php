@@ -9,19 +9,18 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- Scripts -->
+    <!-- Ziggy Routes -->
     @routes
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <!-- Select2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
@@ -33,7 +32,7 @@
         @include('layouts.nav')
 
         <div class="container-fluid" id="wrapper">
-            <div class="row" style="height: 100%">
+            <div class="row" style="min-height: 100%">
                 @if(Auth::user())
                     @if(Auth::user()->type == 'admin')
                         @include('admin.nav_admin')
@@ -48,6 +47,9 @@
             </div>
         </div>
     </div>
-    @yield('scripts')
+    @section('javascript')
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    @show
+
 </body>
 </html>

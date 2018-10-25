@@ -14,13 +14,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.events.index') }}">
                     <span data-feather="shopping-cart"></span>
                     Events
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.places.index') }}">
                     <span data-feather="users"></span>
                     Places
                 </a>

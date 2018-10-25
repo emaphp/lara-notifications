@@ -70,9 +70,8 @@
     </div>
 @endsection
 
-
-
-@section('scripts')
+@section('javascript')
+    @parent
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             var chk_start_time = document.getElementById('insert_start_time');

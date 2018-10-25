@@ -12,29 +12,25 @@
                 {{ session('status') }}
             </div>
         @endif
-    
 
-
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-            <th scope="col"> Name</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($tags as $tag)
-            <tr>
-                <td><b>{{ $tag->name }}</b></td>
-                <td><a class="btn btn-primary" href="{{ route('admin.tags.edit', $tag->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
-                <td><a class="btn btn-primary" href="{{ route('admin.tags.show', $tag->id) }}"><i class="fa  fa-eye"></i> Show</a></td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    
-
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col"> Name</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($tags as $tag)
+                <tr>
+                    <td><b>{{ $tag->name }}</b></td>
+                    <td><a class="btn btn-primary" href="{{ route('admin.tags.edit', $tag->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
+                    <td><a class="btn btn-primary" href="{{ route('admin.tags.show', $tag->id) }}"><i class="fa  fa-eye"></i> Show</a></td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
 @endsection

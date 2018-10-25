@@ -8,7 +8,9 @@
                 {{ session('status') }}
             </div>
         @endif
-
+        <a class="btn btn-primary" href="{{ route('admin.employees.create')}}"><i class="fa fa-plus"></i> Create new User</a>
+        <br>
+        <br>
         <table class="table">
             <thead class="thead-dark">
             <tr>

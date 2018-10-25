@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@include('layouts.nav')
-
 @section('content')
     <div class="container" style="margin-top:45px;">
         <h1>EVENTS</h1>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTagPost;
 use App\Http\Controllers\Controller;
 use App\Tag;
 
@@ -35,15 +36,16 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTagPost $request)
     {
-        //
+        
+        $validate = $request->validated();
+
         $tag = new Tag;
-        $tag->name = $request->name_tag;
+        $tag->name = $request->name;
         $tag->save();
 
-        return redirect()->route('admin.tags.index')->with('status','Tag created successfully.');  
-
+        return redirect()->route('admin.tags.index')->with('status','Tag created successfully.');
     }
 
     /**
@@ -77,11 +79,14 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTagPost $request, $id)
     {
+        $validate = $request->validated();
+
         $tag = Tag::find($id);
-        $tag->name = $request->name_tag;
+        $tag->name = $request->name;
         $tag->save();
+
         return redirect()->route('admin.tags.index')->with('status','Tag edited successfully.');
     }
 
@@ -93,9 +98,9 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
         $tag = Tag::find($id);
         $tag->delete();
+
         return redirect()->route('admin.tags.index')->with('status','Tag removed successfully.');
     }
 }

@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Validator;
+use App\Profile;
 use App\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use App\Notifications\UserWelcome;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -30,7 +35,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.employees.create');
     }
 
     /**
@@ -41,7 +46,41 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'nullable|number',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('admin/employees/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = User::create([
+            'name' => $request->get('first_name') . ' ' . $request->get('last_name'),
+            'email' => $request->get('email'),
+            'password' => Hash::make('123456'),
+            'type' => 'employee'
+        ]);
+
+        $profile = new Profile();
+        $profile->first_name = $request->get('first_name');
+        $profile->last_name = $request->get('last_name');
+        $profile->user_id = $user->id;
+        $profile->telephone = $request->get('phone')? $request->get('phone') : '';
+        $profile->github_account = $request->get('github')? $request->get('github') : '';
+        $profile->save();
+
+        // Notifications to send verification email and store a new user in database
+        $user->notify(new VerifyEmail);
+        $user->notify(new UserWelcome());
+
+        return redirect()->route('admin.employees.index')->with('success', 'User created successfully.');
     }
 
     /**

@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@include('layouts.nav')
-
 @section('content')
     <div class="container" style="margin-top:45px;">
         <h1>{{ __("Create Event") }}</h1>
@@ -81,7 +79,9 @@
     </div>
 @endsection
 
-@section('scripts')
+@section('javascript')
+    @parent
+
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             var chk_start_time = document.getElementById('insert_start_time');
