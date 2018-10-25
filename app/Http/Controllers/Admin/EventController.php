@@ -58,10 +58,10 @@ class EventController extends Controller
 
         $event= new Event;
         $event->name=$request->get('name');
-        $event->start_date = $request->get('startDate');
-        $event->start_time = $request->get('startTime');
-        $event->end_date = $request->get('endDate');
-        $event->end_time = $request->get('endTime');
+        $event->start_date = $request->get('start_date');
+        $event->start_time = $request->get('start_time');
+        $event->end_date = $request->get('end_date');
+        $event->end_time = $request->get('end_time');
         $event->place_id=$request->get('place');
         $event->description=$request->get('description');
         $event->author_id= auth()->id();
