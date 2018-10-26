@@ -51,8 +51,8 @@
                 <div class="form-group col-md-12">
                     <label for="end_time">End Time:</label>
                     <input type="time" id="end_time" class="form-control" name="end_time">
-                    @if ($errors->has('end_time'))
-                        <div class="alert alert-danger">{{ $errors->first('end_time') }}</div>
+                    @if ($errors->has('end_time') || $errors->has('endDateCheck') )
+                        <div class="alert alert-danger">{{ $errors->first() }}</div>
                     @endif
                 </div>
             </div>
