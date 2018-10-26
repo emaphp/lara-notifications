@@ -38,8 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('places', 'Admin\PlaceController');
     });
 
-    Route::group(['prefix' => 'employee', 'middleware' => 'employee'], function () {
-    
+    Route::group(['middleware' => 'employee'], function () {
+        Route::resource('notifications', 'Employee\NotificationController');
+
     });
 
 });
