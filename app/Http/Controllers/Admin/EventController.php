@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
 use App\Event;
 use App\Place;
-
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -45,12 +45,16 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $starDateCheck = Carbon::parse($request->get('start_date'). " ". $request->get('start_time'));
+        $endDateCheck = Carbon::parse($request->get('end_date') . " " . $request->get('end_time'));
+        $data = array_merge($request->all(), ['endDateCheck' => $endDateCheck]);
+
         $rules = [
-            'end_date' => 'nullable|after_or_equal:start_date',
-            'end_time' => 'nullable|after:start_time'
+            'end_date' => 'nullable|after_or_equal:startDate',
+            'endDateCheck' => 'after:'.$starDateCheck,
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         if ($validator->fails()) {
             return redirect('admin/events/create')
@@ -106,14 +110,16 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $starDateCheck = Carbon::parse($request->get('start_date'). " ". $request->get('start_time'));
+        $endDateCheck = Carbon::parse($request->get('end_date') . " " . $request->get('end_time'));
+        $data = array_merge($request->all(), ['endDateCheck' => $endDateCheck]);
+
         $rules = [
-            'start_date' => 'nullable|after:yesterday',
-            'start_time' => 'nullable',
-            'end_date' => 'nullable|after_or_equal:start_date',
-            'end_time' => 'nullable|after:start_time'
+            'end_date' => 'nullable|after_or_equal:startDate',
+            'endDateCheck' => 'after:'.$starDateCheck,
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         if ($validator->fails()) {
             return redirect('admin/events/'. $id .'/edit')

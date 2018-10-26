@@ -47,8 +47,8 @@
             <div class="form-group">
                 <label for="end_time">End Time:</label>
                 <input type="time" name="end_time" id="end_time" class="form-control" value="{{ $event->end_time }}">
-                @if ($errors->has('end_time'))
-                    <div class="alert alert-danger">{{ $errors->first('end_time') }}</div>
+                @if ($errors->has('end_time') || $errors->has('endDateCheck'))
+                    <div class="alert alert-danger">{{ $errors->first() }}</div>
                 @endif
             </div>
 
