@@ -46,8 +46,6 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'start_date' => 'nullable|after:yesterday',
-            'start_time' => 'nullable',
             'end_date' => 'nullable|after_or_equal:start_date',
             'end_time' => 'nullable|after:start_time'
         ];
@@ -60,15 +58,15 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        $event= new Event;
-        $event->name=$request->get('name');
+        $event = new Event;
+        $event->name = $request->get('name');
         $event->start_date = $request->get('start_date');
         $event->start_time = $request->get('start_time');
         $event->end_date = $request->get('end_date');
         $event->end_time = $request->get('end_time');
-        $event->place_id=$request->get('place');
-        $event->description=$request->get('description');
-        $event->author_id= auth()->id();
+        $event->place_id = $request->get('place')? $request->get('place') : null;
+        $event->description = $request->get('description');
+        $event->author_id = auth()->id();
         $event->save();
 
         return redirect()->route('admin.events.index')->with('success', 'Information has been added');
@@ -94,8 +92,9 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::find($id);
-        $users = User::where("type","employee")->get();;
-        return view('admin.events.edit',compact('event','users'));
+        $users = User::where("type","employee")->get();
+        $places = Place::all();
+        return view('admin.events.edit',compact('event','users','places'));
     }
 
     /**
@@ -123,13 +122,13 @@ class EventController extends Controller
         }
 
         $event = Event::find($id);
-        $event->name=$request->get('name');
-        $event->start_date=$request->get('start_date');
-        $event->start_time=$request->get('start_time');
-        $event->end_date=$request->get('end_date');
-        $event->end_time=$request->get('end_time');
-        $event->place_id=$request->get('place');
-        $event->description=$request->get('description');
+        $event->name = $request->get('name');
+        $event->start_date = $request->get('start_date');
+        $event->start_time = $request->get('start_time');
+        $event->end_date = $request->get('end_date');
+        $event->end_time = $request->get('end_time');
+        $event->place_id = $request->get('place')? $request->get('place') : null;
+        $event->description = $request->get('description');
         $event->save();
         $event->users()->detach();
         $event->users()->attach($request->get('guests'));

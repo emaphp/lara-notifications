@@ -59,15 +59,12 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="place">Place:</label>
-                    <select name="place" id="place" class="form-control" required>
-                    @foreach($places as $place)
-                        <option value="{{ $place->id}}" >{{ $place->name }}</option>
-                    @endforeach
+                    <select name="place" id="place" class="form-control">
+                        <option value="" >None</option>
+                        @foreach($places as $place)
+                            <option value="{{ $place->id}}" >{{ $place->name }}</option>
+                        @endforeach
                     </select>
-
-
-
-                    
                 </div>
             </div>
             <div class="row">
