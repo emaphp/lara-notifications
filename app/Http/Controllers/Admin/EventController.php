@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Event;
+use App\Place;
+
 
 class EventController extends Controller
 {
@@ -20,7 +22,8 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('admin.events.index', compact('events'));
+        $places = Place::all();
+        return view('admin.events.index', compact('events', 'places'));
     }
 
     /**
@@ -30,7 +33,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('admin.events.create');
+        $places = Place::all();
+        return view('admin.events.create',compact('places'));
     }
 
     /**

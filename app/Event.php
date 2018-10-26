@@ -26,4 +26,9 @@ class Event extends Model
     {
         return $this->belongsToMany('App\User');
     }
+
+    public function place()
+    {
+        return $this->belongsTo('App\Place', 'place_id' );
+    }
 }
