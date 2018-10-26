@@ -15,6 +15,8 @@ try {
 
     require('summernote/dist/summernote-bs4.js');
 
+    require('select2/dist/js/select2.js');
+
 } catch (e) {}
 
 /**

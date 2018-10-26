@@ -17,14 +17,18 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
 
-    public function post()
+    public function author()
     {
         return $this->belongsTo('App\User');
     }
 
-
     public function place()
     {
         return $this->belongsTo('App\Place', 'place_id' );
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
     }
 }

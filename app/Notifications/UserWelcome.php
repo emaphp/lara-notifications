@@ -57,7 +57,7 @@ class UserWelcome extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'message' => 'Welcome to Alas Notifications!'
         ];
     }
 }

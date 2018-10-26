@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Employee;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreTagPost;
 use App\Http\Controllers\Controller;
-use App\Tag;
 
-class TagController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('tag.index', compact('tags'));
+        return view('notification.index');
     }
 
     /**
@@ -27,7 +24,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('tag.create');
+        //
     }
 
     /**
@@ -36,16 +33,9 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTagPost $request)
+    public function store(Request $request)
     {
-        
-        $validate = $request->validated();
-
-        $tag = new Tag;
-        $tag->name = $request->name;
-        $tag->save();
-
-        return redirect()->route('admin.tags.index')->with('status','Tag created successfully.');
+        //
     }
 
     /**
@@ -56,8 +46,7 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        $tag = Tag::find($id);
-        return view('tag.show', compact('tag'));
+        //
     }
 
     /**
@@ -68,8 +57,7 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::find($id);
-        return view('tag.edit', compact('tag'));
+        //
     }
 
     /**
@@ -79,15 +67,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreTagPost $request, $id)
+    public function update(Request $request, $id)
     {
-        $validate = $request->validated();
-
-        $tag = Tag::find($id);
-        $tag->name = $request->name;
-        $tag->save();
-
-        return redirect()->route('admin.tags.index')->with('status','Tag edited successfully.');
+        //
     }
 
     /**
@@ -98,9 +80,6 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        $tag = Tag::find($id);
-        $tag->delete();
-
-        return redirect()->route('admin.tags.index')->with('status','Tag removed successfully.');
+        //
     }
 }

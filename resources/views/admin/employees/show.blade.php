@@ -2,33 +2,31 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="content">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header card-title text-center">Showing {{ $user->name }}</div>
-
-                        <div class="card-body">
-                            <strong>Email:</strong> {{ $user->email }}<br>
-                            <strong>Telephone:</strong> {{ $user->profile ? $user->profile->telephone : "-" }}<br>
-                            <strong>Github Account:</strong> {{ $user->profile ? $user->profile->github_account : "-" }}
-                            <br>
-                            <div style="padding-left: 50%;">
-                                <a class="btn btn-success" href="{{ route('admin.employees.index') }}">Back</a>
-                            </div>
-                            @if (!($user->trashed()))
-                                <form action="{{route('admin.employees.destroy', $user['id'])}}" method="post">
-                                    <div style="text-align:right">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit" >Disable User</button>
-                                    </div>
-                                </form>
-                            @endif
+    <div class="container" style="margin-top:45px;">
+        <h1>Details of the employee {{ $user->name }}</h1>
+        <div class="row">
+            <div class="col-12">
+                <strong>Email:</strong> {{ $user->email }}
+            </div>
+            <div class="col-12">
+                <strong>Telephone:</strong> {{ $user->profile ? $user->profile->telephone : "-" }}
+            </div>
+            <div class="col-12">
+                <strong>Github Account:</strong> {{ $user->profile ? $user->profile->github_account : "-" }}
+            </div>
+            <div class="col-12">
+                @if (!($user->trashed()))
+                    <form action="{{route('admin.employees.destroy', $user->id)}}" method="post">
+                        <div>
+                            @csrf
+                            <input name="_method" type="hidden" value="DELETE">
+                            <button class="btn btn-danger" type="submit"><i class="fa fa-minus-circle"></i> Disable User</button>
                         </div>
-                    </div>
-                </div>
+                    </form>
+                @endif
+            </div>
+            <div class="col-12">
+                <a class="btn btn-link" href="{{ route('admin.employees.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a>
             </div>
         </div>
     </div>
