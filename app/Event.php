@@ -21,4 +21,10 @@ class Event extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+
+    public function place()
+    {
+        return $this->belongsTo('App\Place', 'place_id' );
+    }
 }

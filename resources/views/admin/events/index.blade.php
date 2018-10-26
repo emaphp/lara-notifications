@@ -30,7 +30,7 @@
                         <td>{{ $event->start_time }}</td>
                         <td>{{ $event->end_date }}</td>
                         <td>{{ $event->end_time }}</td>
-                        <td>{{ $event->place_id }}</td>
+                        <td>{{ $event->place? $event->place->name : '' }}</td>
                     </tr>
                 @endforeach
             </tbody>

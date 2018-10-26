@@ -56,7 +56,15 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="place">Place:</label>
-                    <input type="text" id="place" class="form-control" name="place">
+                    <select name="place" id="place" class="form-control" required>
+                    @foreach($places as $place)
+                        <option value="{{ $place->id}}" >{{ $place->name }}</option>
+                    @endforeach
+                    </select>
+
+
+
+                    
                 </div>
             </div>
             <div class="row">
