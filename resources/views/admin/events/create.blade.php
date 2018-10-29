@@ -85,8 +85,10 @@
 @endsection
 
 @section('javascript')
-    @parent
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             var chk_start_time = document.getElementById('insert_start_time');
@@ -103,4 +105,16 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#description').summernote();
+
+            $('#guests').select2();
+        });
+    </script>
+@endsection
+
+@section('css')
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 @endsection

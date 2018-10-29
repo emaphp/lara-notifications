@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-    @section('content')
+@section('content')
     <div class="container" style="margin-top:45px;">
     <h1>Edit Place</h1>
         <form action="{{ route('admin.places.update',  $place->id) }}" method="post">
@@ -33,15 +33,19 @@
 
         <a class="btn btn-link" href="{{ route('admin.places.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a> 
     </div>
-    @endsection
+@endsection
 
 @section('javascript')
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.taggables').select2();
         });
     </script>
+@endsection
+
+@section('css')
+    @parent
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 @endsection
