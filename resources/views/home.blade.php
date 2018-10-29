@@ -6,6 +6,12 @@
             @if (Auth::user()->type == 'admin')
                 <div id="employees-quantity"></div>
             @endif
+
+
+
+            @if (Auth::user()->type == 'employee')
+                <div id="pending-events"></div>
+            @endif
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -25,4 +31,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('javascript')
+    @parent
+    <script src="{{ asset('js/pendingEvents.js') }}" defer></script>
 @endsection
