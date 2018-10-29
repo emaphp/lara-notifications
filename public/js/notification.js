@@ -2006,6 +2006,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(6);
@@ -2026,16 +2028,30 @@ var Notification = function (_Component) {
     function Notification(props) {
         _classCallCheck(this, Notification);
 
-        return _possibleConstructorReturn(this, (Notification.__proto__ || Object.getPrototypeOf(Notification)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Notification.__proto__ || Object.getPrototypeOf(Notification)).call(this, props));
+
+        _this.state = {
+            notification: _extends({}, props.notification)
+        };
+        return _this;
     }
 
     _createClass(Notification, [{
-        key: 'render',
+        key: "render",
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
-                'div',
+                "div",
                 { data: this.props.notification.id },
-                this.props.notification.data.message
+                this.props.notification.data.message,
+                _react2.default.createElement(
+                    "button",
+                    { className: "btn btn-primary pull-right", onClick: function onClick() {
+                            _this2.props.clickMethod(_this2.state.notification.id, _this2.props.idUser);
+                        } },
+                    "Mark as Read"
+                )
             );
         }
     }]);

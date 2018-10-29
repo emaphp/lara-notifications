@@ -53805,6 +53805,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(6);
@@ -53825,16 +53827,30 @@ var Notification = function (_Component) {
     function Notification(props) {
         _classCallCheck(this, Notification);
 
-        return _possibleConstructorReturn(this, (Notification.__proto__ || Object.getPrototypeOf(Notification)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Notification.__proto__ || Object.getPrototypeOf(Notification)).call(this, props));
+
+        _this.state = {
+            notification: _extends({}, props.notification)
+        };
+        return _this;
     }
 
     _createClass(Notification, [{
-        key: 'render',
+        key: "render",
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
-                'div',
+                "div",
                 { data: this.props.notification.id },
-                this.props.notification.data.message
+                this.props.notification.data.message,
+                _react2.default.createElement(
+                    "button",
+                    { className: "btn btn-primary pull-right", onClick: function onClick() {
+                            _this2.props.clickMethod(_this2.state.notification.id, _this2.props.idUser);
+                        } },
+                    "Mark as Read"
+                )
             );
         }
     }]);
@@ -53927,6 +53943,19 @@ var UnreadNotifications = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (UnreadNotifications.__proto__ || Object.getPrototypeOf(UnreadNotifications)).call(this, props));
 
+        _this.markNotificationAsRead = function (notificationId, idUser) {
+            _axios2.default.defaults.headers.common = {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            };
+            _axios2.default.put((0, _route2.default)('api.markNotificationAsRead', [notificationId, idUser])) //
+            .then(function (response) {
+                _this.getNotifications();
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        };
+
         _this.state = {
             notifications: []
         };
@@ -53936,16 +53965,13 @@ var UnreadNotifications = function (_Component) {
     _createClass(UnreadNotifications, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var self = this;
-            _axios2.default.get(this.props.notificationsUrl).then(function (response) {
-                self.setState({ notifications: response.data.notifications });
-            }).catch(function (err) {
-                return console.log(err);
-            });
+            this.getNotifications();
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 _polaris.AppProvider,
                 null,
@@ -53953,10 +53979,20 @@ var UnreadNotifications = function (_Component) {
                     _polaris.Card,
                     { title: 'Unread Notifications', sectioned: true },
                     this.state.notifications.map(function (notification) {
-                        return _react2.default.createElement(_Notification2.default, { key: notification.id, notification: notification });
+                        return _react2.default.createElement(_Notification2.default, { key: notification.id, notification: notification, idUser: _this2.props.idUser, clickMethod: _this2.markNotificationAsRead });
                     })
                 )
             );
+        }
+    }, {
+        key: 'getNotifications',
+        value: function getNotifications() {
+            var self = this;
+            _axios2.default.get(this.props.notificationsUrl).then(function (response) {
+                self.setState({ notifications: response.data.notifications });
+            }).catch(function (err) {
+                return console.log(err);
+            });
         }
     }]);
 
@@ -53969,7 +54005,7 @@ exports.default = UnreadNotifications;
 if (document.getElementById('unread-notifications')) {
     var data = document.getElementById('unread-notifications').getAttribute('data');
     var url = (0, _route2.default)('api.unreadNotifications', { id: data });
-    _reactDom2.default.render(_react2.default.createElement(UnreadNotifications, { notificationsUrl: url }), document.getElementById('unread-notifications'));
+    _reactDom2.default.render(_react2.default.createElement(UnreadNotifications, { notificationsUrl: url, idUser: data }), document.getElementById('unread-notifications'));
 }
 
 /***/ }),

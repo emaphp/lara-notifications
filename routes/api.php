@@ -19,5 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/notifications/{user_id}', 'NotificationController@getUnreadNotifications')->name('api.unreadNotifications');
 
+Route::put('/notifications/{notification_id}/{user_id}', 'NotificationController@markNotificationAsRead')->name('api.markNotificationAsRead');
+
 Route::get('/employees/quantity', 'EmployeeController@getEmployeeQuantity');
 //Route::apiResource('employees', 'EmployeeController');
