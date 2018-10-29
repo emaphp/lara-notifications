@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { AppProvider, Card } from '@shopify/polaris';
+import { AppProvider, Card, Spinner } from '@shopify/polaris';
 import axios from 'axios';
 import route from "../../../vendor/tightenco/ziggy/src/js/route";
 import Notification from './Notification';
@@ -11,7 +11,8 @@ export default class UnreadNotifications extends Component {
         super(props);
 
         this.state = {
-            notifications: []
+            notifications: [],
+            loader: true
         };
     }
 
@@ -20,9 +21,16 @@ export default class UnreadNotifications extends Component {
     }
 
     render() {
+        let data;
+        if (this.state.loader) {
+            data = <Spinner size="large" color="inkLightest" />
+        } else {
+            data ="";
+        }
         return(
             <AppProvider>
                 <Card title="Unread Notifications" sectioned>
+                    {data}
                     { this.state.notifications.map((notification) =>
                         <Notification key={notification.id} notification={ notification } idUser={this.props.idUser} clickMethod={ this.markNotificationAsRead } />
                     ) }
@@ -36,6 +44,7 @@ export default class UnreadNotifications extends Component {
         axios.get(this.props.notificationsUrl)
             .then(response => {
                 self.setState({ notifications: response.data.notifications });
+                self.setState({ loader: false});
             })
             .catch(err => console.log(err));
     }
