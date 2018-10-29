@@ -51,15 +51,20 @@
                 <div class="form-group col-md-12">
                     <label for="end_time">End Time:</label>
                     <input type="time" id="end_time" class="form-control" name="end_time">
-                    @if ($errors->has('end_time'))
-                        <div class="alert alert-danger">{{ $errors->first('end_time') }}</div>
+                    @if ($errors->has('end_time') || $errors->has('endDateCheck') )
+                        <div class="alert alert-danger">{{ $errors->first() }}</div>
                     @endif
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="place">Place:</label>
-                    <input type="text" id="place" class="form-control" name="place">
+                    <select name="place" id="place" class="form-control">
+                        <option value="" >None</option>
+                        @foreach($places as $place)
+                            <option value="{{ $place->id}}" >{{ $place->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="row">

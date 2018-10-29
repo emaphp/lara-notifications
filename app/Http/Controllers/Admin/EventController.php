@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
 use App\Event;
+use App\Place;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -20,7 +22,8 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('admin.events.index', compact('events'));
+        $places = Place::all();
+        return view('admin.events.index', compact('events', 'places'));
     }
 
     /**
@@ -30,7 +33,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('admin.events.create');
+        $places = Place::all();
+        return view('admin.events.create',compact('places'));
     }
 
     /**
@@ -41,14 +45,16 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $starDateCheck = Carbon::parse($request->get('start_date'). " ". $request->get('start_time'));
+        $endDateCheck = Carbon::parse($request->get('end_date') . " " . $request->get('end_time'));
+        $data = array_merge($request->all(), ['endDateCheck' => $endDateCheck]);
+
         $rules = [
-            'start_date' => 'nullable|after:yesterday',
-            'start_time' => 'nullable',
-            'end_date' => 'nullable|after_or_equal:start_date',
-            'end_time' => 'nullable|after:start_time'
+            'end_date' => 'nullable|after_or_equal:startDate',
+            'endDateCheck' => 'after:'.$starDateCheck,
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         if ($validator->fails()) {
             return redirect('admin/events/create')
@@ -56,15 +62,15 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        $event= new Event;
-        $event->name=$request->get('name');
+        $event = new Event;
+        $event->name = $request->get('name');
         $event->start_date = $request->get('start_date');
         $event->start_time = $request->get('start_time');
         $event->end_date = $request->get('end_date');
         $event->end_time = $request->get('end_time');
-        $event->place_id=$request->get('place');
-        $event->description=$request->get('description');
-        $event->author_id= auth()->id();
+        $event->place_id = $request->get('place')? $request->get('place') : null;
+        $event->description = $request->get('description');
+        $event->author_id = auth()->id();
         $event->save();
 
         return redirect()->route('admin.events.index')->with('success', 'Information has been added');
@@ -90,8 +96,9 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::find($id);
-        $users = User::where("type","employee")->get();;
-        return view('admin.events.edit',compact('event','users'));
+        $users = User::where("type","employee")->get();
+        $places = Place::all();
+        return view('admin.events.edit',compact('event','users','places'));
     }
 
     /**
@@ -103,14 +110,16 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $starDateCheck = Carbon::parse($request->get('start_date'). " ". $request->get('start_time'));
+        $endDateCheck = Carbon::parse($request->get('end_date') . " " . $request->get('end_time'));
+        $data = array_merge($request->all(), ['endDateCheck' => $endDateCheck]);
+
         $rules = [
-            'start_date' => 'nullable|after:yesterday',
-            'start_time' => 'nullable',
-            'end_date' => 'nullable|after_or_equal:start_date',
-            'end_time' => 'nullable|after:start_time'
+            'end_date' => 'nullable|after_or_equal:startDate',
+            'endDateCheck' => 'after:'.$starDateCheck,
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         if ($validator->fails()) {
             return redirect('admin/events/'. $id .'/edit')
@@ -119,13 +128,13 @@ class EventController extends Controller
         }
 
         $event = Event::find($id);
-        $event->name=$request->get('name');
-        $event->start_date=$request->get('start_date');
-        $event->start_time=$request->get('start_time');
-        $event->end_date=$request->get('end_date');
-        $event->end_time=$request->get('end_time');
-        $event->place_id=$request->get('place');
-        $event->description=$request->get('description');
+        $event->name = $request->get('name');
+        $event->start_date = $request->get('start_date');
+        $event->start_time = $request->get('start_time');
+        $event->end_date = $request->get('end_date');
+        $event->end_time = $request->get('end_time');
+        $event->place_id = $request->get('place')? $request->get('place') : null;
+        $event->description = $request->get('description');
         $event->save();
         $event->users()->detach();
         $event->users()->attach($request->get('guests'));
