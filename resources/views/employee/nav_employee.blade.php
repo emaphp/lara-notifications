@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('profile.index') }}">
                     <span data-feather="file"></span>
                     Profile
                 </a>
