@@ -53957,7 +53957,8 @@ var UnreadNotifications = function (_Component) {
         };
 
         _this.state = {
-            notifications: []
+            notifications: [],
+            loader: true
         };
         return _this;
     }
@@ -53972,12 +53973,19 @@ var UnreadNotifications = function (_Component) {
         value: function render() {
             var _this2 = this;
 
+            var data = void 0;
+            if (this.state.loader) {
+                data = _react2.default.createElement(_polaris.Spinner, { size: 'large', color: 'inkLightest' });
+            } else {
+                data = "";
+            }
             return _react2.default.createElement(
                 _polaris.AppProvider,
                 null,
                 _react2.default.createElement(
                     _polaris.Card,
                     { title: 'Unread Notifications', sectioned: true },
+                    data,
                     this.state.notifications.map(function (notification) {
                         return _react2.default.createElement(_Notification2.default, { key: notification.id, notification: notification, idUser: _this2.props.idUser, clickMethod: _this2.markNotificationAsRead });
                     })
@@ -53990,6 +53998,7 @@ var UnreadNotifications = function (_Component) {
             var self = this;
             _axios2.default.get(this.props.notificationsUrl).then(function (response) {
                 self.setState({ notifications: response.data.notifications });
+                self.setState({ loader: false });
             }).catch(function (err) {
                 return console.log(err);
             });
