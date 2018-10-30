@@ -23,3 +23,5 @@ Route::put('/notifications/{notification_id}/{user_id}', 'NotificationController
 
 Route::get('/employees/quantity', 'EmployeeController@getEmployeeQuantity');
 //Route::apiResource('employees', 'EmployeeController');
+
+Route::get('/pending_events/{year}/{month}','EventListController@getPendingEvents')->name('api.pendingEvents');

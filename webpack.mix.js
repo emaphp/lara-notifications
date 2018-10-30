@@ -14,4 +14,5 @@ let mix = require('laravel-mix');
 mix.react('resources/js/app.js', 'public/js')
     .react('resources/js/unreadNotifications.js', 'public/js')
     .react('resources/js/notification.js', 'public/js')
+    .react('resources/js/pendingEvents.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
