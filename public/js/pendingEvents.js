@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 543);
+/******/ 	return __webpack_require__(__webpack_require__.s = 548);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -54047,72 +54047,7 @@ var UrlBuilder = function () {
 exports.default = UrlBuilder;
 
 /***/ }),
-/* 529 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(7);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Notification = function (_Component) {
-    _inherits(Notification, _Component);
-
-    function Notification(props) {
-        _classCallCheck(this, Notification);
-
-        var _this = _possibleConstructorReturn(this, (Notification.__proto__ || Object.getPrototypeOf(Notification)).call(this, props));
-
-        _this.state = {
-            notification: _extends({}, props.notification)
-        };
-        return _this;
-    }
-
-    _createClass(Notification, [{
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                "div",
-                { data: this.props.notification.id },
-                this.props.notification.data.message,
-                _react2.default.createElement(
-                    "button",
-                    { className: "btn btn-primary pull-right", onClick: function onClick() {
-                            _this2.props.clickMethod(_this2.state.notification.id, _this2.props.idUser);
-                        } },
-                    "Mark as Read"
-                )
-            );
-        }
-    }]);
-
-    return Notification;
-}(_react.Component);
-
-exports.default = Notification;
-
-/***/ }),
+/* 529 */,
 /* 530 */,
 /* 531 */,
 /* 532 */,
@@ -54126,26 +54061,28 @@ exports.default = Notification;
 /* 540 */,
 /* 541 */,
 /* 542 */,
-/* 543 */
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(544);
+module.exports = __webpack_require__(549);
 
 
 /***/ }),
-/* 544 */
+/* 549 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-/**
- * Created by julieta on 26/10/18.
- */
-__webpack_require__(545);
+__webpack_require__(550);
 
 /***/ }),
-/* 545 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54175,9 +54112,9 @@ var _route = __webpack_require__(527);
 
 var _route2 = _interopRequireDefault(_route);
 
-var _Notification = __webpack_require__(529);
+var _Event = __webpack_require__(551);
 
-var _Notification2 = _interopRequireDefault(_Notification);
+var _Event2 = _interopRequireDefault(_Event);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54187,87 +54124,153 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UnreadNotifications = function (_Component) {
-    _inherits(UnreadNotifications, _Component);
+var PendingEvents = function (_Component) {
+    _inherits(PendingEvents, _Component);
 
-    function UnreadNotifications(props) {
-        _classCallCheck(this, UnreadNotifications);
+    function PendingEvents(props) {
+        _classCallCheck(this, PendingEvents);
 
-        var _this = _possibleConstructorReturn(this, (UnreadNotifications.__proto__ || Object.getPrototypeOf(UnreadNotifications)).call(this, props));
-
-        _this.markNotificationAsRead = function (notificationId, idUser) {
-            _axios2.default.defaults.headers.common = {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            };
-            _axios2.default.put((0, _route2.default)('api.markNotificationAsRead', [notificationId, idUser])) //
-            .then(function (response) {
-                _this.getNotifications();
-            }).catch(function (err) {
-                return console.log(err);
-            });
-        };
+        var _this = _possibleConstructorReturn(this, (PendingEvents.__proto__ || Object.getPrototypeOf(PendingEvents)).call(this, props));
 
         _this.state = {
-            notifications: [],
-            loader: true
+            eventList: []
         };
         return _this;
     }
 
-    _createClass(UnreadNotifications, [{
+    _createClass(PendingEvents, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.getNotifications();
+            var self = this;
+            var url = (0, _route2.default)(this.props.eventListUrlName, { year: today.getFullYear(), month: today.getMonth() + 1 });
+            _axios2.default.get(url).then(function (response) {
+                self.setState({ eventList: response.data.eventList });
+            }).catch(function (err) {
+                return console.log(err);
+            });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var data = void 0;
-            if (this.state.loader) {
-                data = _react2.default.createElement(_polaris.Spinner, { size: 'large', color: 'inkLightest' });
-            } else {
-                data = "";
-            }
             return _react2.default.createElement(
                 _polaris.AppProvider,
                 null,
                 _react2.default.createElement(
                     _polaris.Card,
-                    { title: 'Unread Notifications', sectioned: true },
-                    data,
-                    this.state.notifications.map(function (notification) {
-                        return _react2.default.createElement(_Notification2.default, { key: notification.id, notification: notification, idUser: _this2.props.idUser, clickMethod: _this2.markNotificationAsRead });
+                    { title: 'Pending Events', sectioned: true },
+                    this.state.eventList.map(function (event) {
+                        return _react2.default.createElement(_Event2.default, { key: event.id, event: event });
                     })
                 )
             );
         }
-    }, {
-        key: 'getNotifications',
-        value: function getNotifications() {
-            var self = this;
-            _axios2.default.get(this.props.notificationsUrl).then(function (response) {
-                self.setState({ notifications: response.data.notifications });
-                self.setState({ loader: false });
-            }).catch(function (err) {
-                return console.log(err);
-            });
+    }]);
+
+    return PendingEvents;
+}(_react.Component);
+
+exports.default = PendingEvents;
+
+
+if (document.getElementById('pending-events')) {
+    var today = new Date();
+    _reactDom2.default.render(_react2.default.createElement(PendingEvents, { eventListUrlName: 'api.pendingEvents', month: today.getMonth() + 1, year: today.getFullYear() }), document.getElementById('pending-events'));
+}
+
+/***/ }),
+/* 551 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Event = function (_Component) {
+    _inherits(Event, _Component);
+
+    function Event(props) {
+        _classCallCheck(this, Event);
+
+        return _possibleConstructorReturn(this, (Event.__proto__ || Object.getPrototypeOf(Event)).call(this, props));
+    }
+
+    _createClass(Event, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { data: this.props.event.id },
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Name: ',
+                    this.props.event.name
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Star Date: ',
+                    this.props.event.start_date,
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Star Time: ',
+                    this.props.event.start_time,
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'End Date: ',
+                    this.props.event.end_date,
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'End Time ',
+                    this.props.event.end_time,
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Place: ',
+                    this.props.event.place ? this.props.event.place.name : 'None',
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    '--------------------------------------'
+                )
+            );
         }
     }]);
 
-    return UnreadNotifications;
+    return Event;
 }(_react.Component);
 
-exports.default = UnreadNotifications;
-
-
-if (document.getElementById('unread-notifications')) {
-    var data = document.getElementById('unread-notifications').getAttribute('data');
-    var url = (0, _route2.default)('api.unreadNotifications', { id: data });
-    _reactDom2.default.render(_react2.default.createElement(UnreadNotifications, { notificationsUrl: url, idUser: data }), document.getElementById('unread-notifications'));
-}
+exports.default = Event;
 
 /***/ })
 /******/ ]);
