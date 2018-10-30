@@ -32,7 +32,7 @@ export default class UnreadNotifications extends Component {
                 <Card title="Unread Notifications" sectioned>
                     {data}
                     { this.state.notifications.map((notification) =>
-                        <Notification key={notification.id} notification={ notification } idUser={this.props.idUser} clickMethod={ this.markNotificationAsRead } />
+                        <Notification key={notification.id} notification={ notification } clickMethod={ this.markNotificationAsRead } />
                     ) }
                 </Card>
             </AppProvider>
@@ -54,7 +54,7 @@ export default class UnreadNotifications extends Component {
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
-        axios.put(route('api.markNotificationAsRead', [notificationId, idUser])) //
+        axios.put(route('api.markNotificationAsRead', [notificationId])) //
             .then(response => {
                 this.getNotifications();
             })
@@ -63,7 +63,7 @@ export default class UnreadNotifications extends Component {
 }
 
 if (document.getElementById('unread-notifications')) {
-    var data = document.getElementById('unread-notifications').getAttribute('data');
-    var url = route('api.unreadNotifications', {id: data});
-    ReactDOM.render(<UnreadNotifications notificationsUrl={url} idUser={data}/>, document.getElementById('unread-notifications'));
+    // var data = document.getElementById('unread-notifications').getAttribute('data');
+    var url = route('api.unreadNotifications');
+    ReactDOM.render(<UnreadNotifications notificationsUrl={url}/>, document.getElementById('unread-notifications'));
 }

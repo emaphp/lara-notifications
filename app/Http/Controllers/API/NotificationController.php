@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -64,9 +63,9 @@ class NotificationController extends Controller
         //
     }
 
-    public function getUnreadNotifications($id)
+    public function getUnreadNotifications()
     {
-        $user = User::find($id);
+        $user = User::find(Auth::user()->id);
 
         $notifications = $user->unreadNotifications->toArray();
 
@@ -75,9 +74,9 @@ class NotificationController extends Controller
         ]);
     }
 
-    public function markNotificationAsRead($id, $idUser, Request $request)
+    public function markNotificationAsRead($id, Request $request)
     {
-        $user = User::find($idUser);
+        $user = User::find(Auth::user()->id);
         $notification = $user->notifications()->where('id', $id)->first();
         $notification->markAsRead();
 

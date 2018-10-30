@@ -14,7 +14,7 @@ export default class Notification extends Component {
             <div data={ this.props.notification.id }>
                 { this.props.notification.data.message }
                 <button className="btn btn-primary pull-right" onClick={ () => {
-                    this.props.clickMethod(this.state.notification.id, this.props.idUser);
+                    this.props.clickMethod(this.state.notification.id);
                 } }>Mark as Read</button>
             </div>
         )

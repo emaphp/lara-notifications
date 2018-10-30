@@ -17,11 +17,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/notifications/{user_id}', 'NotificationController@getUnreadNotifications')->name('api.unreadNotifications');
+Route::group(['middleware' => 'auth:api'], function () {
 
-Route::put('/notifications/{notification_id}/{user_id}', 'NotificationController@markNotificationAsRead')->name('api.markNotificationAsRead');
+});
 
-Route::get('/employees/quantity', 'EmployeeController@getEmployeeQuantity');
+
+Route::get('/notifications', 'NotificationController@getUnreadNotifications')->name('api.unreadNotifications')->middleware('auth:api');
+
+Route::put('/notifications/{notification_id}', 'NotificationController@markNotificationAsRead')->name('api.markNotificationAsRead');
+
+Route::get('/employees/quantity', 'EmployeeController@getEmployeeQuantity')->middleware('auth:api');
 //Route::apiResource('employees', 'EmployeeController');
 
 Route::get('/pending_events/{year}/{month}','EventListController@getPendingEvents')->name('api.pendingEvents');
