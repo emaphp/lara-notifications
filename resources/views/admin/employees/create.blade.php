@@ -45,7 +45,7 @@
 
             <div class="form-group">
                 <label for="phone">Phone:</label>
-                <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}">
+                <input type="tel" name="phone" id="phone" class="form-control" placeholder="+dd (ddd) ddd-dddd" value="{{ old('phone') }}">
                 @if ($errors->has('phone'))
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('phone') }}</strong>
