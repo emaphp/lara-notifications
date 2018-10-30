@@ -77,8 +77,8 @@ class ProfileController extends Controller
         $profile = Profile::find($id);
         $profile->first_name = $request->first_name;
         $profile->last_name = $request->last_name;
-        $profile->telephone = $request->telephone;
-        $profile->github_account = $request->github_account;
+        $profile->telephone = $request->telephone ? $request->telephone : "";
+        $profile->github_account = $request->github_account ?$request->github_account : "";
         $profile->save();
 
         $user = $profile->user()->first();
