@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Place;
+use App\Tag;
 use Carbon\Carbon;
 
 class EventController extends Controller
@@ -34,7 +35,8 @@ class EventController extends Controller
     public function create()
     {
         $places = Place::all();
-        return view('admin.events.create',compact('places'));
+        $tags = Tag::all();
+        return view('admin.events.create',compact('places', 'tags'));
     }
 
     /**
@@ -73,6 +75,10 @@ class EventController extends Controller
         $event->author_id = auth()->id();
         $event->save();
 
+        if ($request->event_tags) {
+            $event->tags()->attach($request->event_tags, ['taggable_type'=> 'App\Event']);
+        }
+
         return redirect()->route('admin.events.index')->with('success', 'Information has been added');
     }
 
@@ -98,7 +104,8 @@ class EventController extends Controller
         $event = Event::find($id);
         $users = User::where("type","employee")->get();
         $places = Place::all();
-        return view('admin.events.edit',compact('event','users','places'));
+        $tags = Tag::all();
+        return view('admin.events.edit',compact('event','users','places', 'tags'));
     }
 
     /**
@@ -138,7 +145,14 @@ class EventController extends Controller
         $event->save();
         $event->users()->detach();
         $event->users()->attach($request->get('guests'));
-        return redirect()->route('admin.events.index');
+
+        $event->tags()->detach();
+        if ($request->event_tags) {
+            $event->tags()->attach($request->event_tags, ['taggable_type'=> 'App\Event']);            
+        }
+
+
+        return redirect()->route('admin.events.index')->with('status','Event edited successfully.');
     }
 
     /**

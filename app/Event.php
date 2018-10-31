@@ -31,4 +31,9 @@ class Event extends Model
     {
         return $this->belongsTo('App\Place', 'place_id');
     }
+    
+    public function tags()
+    {
+        return $this->morphToMany('App\Tag', 'taggable');
+    }
 }

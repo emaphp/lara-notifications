@@ -77,6 +77,16 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                    <label for="event_tags">Tags:</label>
+                    <select class="form-control taggables" name="event_tags[]" multiple="multiple" id="event_tags">
+                    @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}" {{ $event->tags->contains('id',$tag->id)? 'selected' : '' }}  > {{ $tag->name }} </option>
+                    @endforeach
+                    </select>
+            </div>
+
+
             <div class="form-group" style="margin-top: 20px">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
             </div>
@@ -101,6 +111,14 @@
                 var checked = chk_end_time.checked;
                 end_time.disabled = !checked;
             });
+        });
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.taggables').select2();
         });
     </script>
 @endsection
