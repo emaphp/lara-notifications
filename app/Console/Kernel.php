@@ -2,11 +2,8 @@
 
 namespace App\Console;
 
-use App\Event;
-use App\Notifications\UpcomingEvent;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Carbon\Carbon;
 use DB;
 
 class Kernel extends ConsoleKernel
@@ -17,7 +14,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\UpdateEventStatus::class
+        Commands\UpcomingEventNotification::class,
+        Commands\UpdateEventStatus::class,
     ];
 
     /**
@@ -30,9 +28,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        
+
+        $schedule->command(Commands\UpcomingEventNotification::class)
+            ->daily();
+
         $schedule->command(Commands\UpdateEventStatus::class)
-                 ->everyMinute();
+            ->everyMinute();
     }
 
     /**
