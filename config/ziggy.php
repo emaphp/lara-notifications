@@ -1,5 +1,5 @@
 <?php
 return [
-     'whitelist' => ['home', 'api.*'],
+     'whitelist' => ['home', 'api.*','events.show'],
 //    'blacklist' => ['admin.*'],
 ];

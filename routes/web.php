@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'employee'], function () {
         Route::resource('notifications', 'Employee\NotificationController');
         Route::resource('profile', 'Employee\ProfileController');
+        Route::resource('events', 'Employee\EventController');
     });
 
 });

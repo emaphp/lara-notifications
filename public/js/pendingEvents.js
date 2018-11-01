@@ -54194,6 +54194,10 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _route = __webpack_require__(527);
+
+var _route2 = _interopRequireDefault(_route);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -54214,6 +54218,8 @@ var Event = function (_Component) {
     _createClass(Event, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'div',
                 { data: this.props.event.id },
@@ -54257,6 +54263,13 @@ var Event = function (_Component) {
                     'Place: ',
                     this.props.event.place ? this.props.event.place.name : 'None',
                     ' '
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { className: 'btn btn-link', onClick: function onClick() {
+                            window.location.href = (0, _route2.default)('events.show', [_this2.props.event.id]);
+                        } },
+                    'Go to event'
                 ),
                 _react2.default.createElement(
                     'p',
