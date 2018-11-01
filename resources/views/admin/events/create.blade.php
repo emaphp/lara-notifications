@@ -73,6 +73,16 @@
                     <textarea name="description" id="description" cols="30" rows="10"></textarea>
                 </div>
             </div>
+
+            <div class="form-group">
+                    <label for="event_tags">Tags:</label>
+                    <select class="form-control taggables" name="event_tags[]" multiple="multiple" id="event_tags">
+                    @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}"> {{ $tag->name }} </option>
+                    @endforeach
+                    </select>
+            </div>
+
             <div class="row">
                 <div class="form-group col-md-12" style="margin-top: 20px">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Create Event</button>
@@ -105,11 +115,12 @@
             });
         });
     </script>
+<<<<<<< HEAD
     <script>
         $(document).ready(function() {
             $('#description').summernote();
-
             $('#guests').select2();
+            $('.taggables').select2();
         });
     </script>
 @endsection
