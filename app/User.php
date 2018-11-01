@@ -46,4 +46,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany('App\Event');
     }
+
+    public function breakfast_logs()
+    {
+        return $this->hasMany('App\BreakfastLog');
+    }
 }

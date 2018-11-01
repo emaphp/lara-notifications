@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ProfilesTableSeeder::class,
-            TagTableSeeder::class
+            TagTableSeeder::class,
+            UsersTableSeeder::class
         ]);
     }
 }
