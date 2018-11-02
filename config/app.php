@@ -161,6 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Tightenco\Ziggy\ZiggyServiceProvider::class,
+        App\Providers\AlasNotificationServiceProvider::class,
     ],
 
     /*
