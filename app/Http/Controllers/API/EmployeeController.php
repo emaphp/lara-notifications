@@ -70,4 +70,14 @@ class EmployeeController extends Controller
             'quantity' => $quantity
         ]);
     }
+
+    public function getBreakfastList()
+    {
+        $the_breakfast_club = User::where('type','=','employee')
+            ->whereNotNull('order')
+            ->get();
+        return response()->json([
+            'list' => $the_breakfast_club
+        ]);
+    }
 }

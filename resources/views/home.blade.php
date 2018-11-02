@@ -7,7 +7,7 @@
                 <div id="employees-quantity"></div>
             @endif
 
-
+                <div id="breakfast-club"></div>
 
             @if (Auth::user()->type == 'employee')
                 <div id="pending-events"></div>

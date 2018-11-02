@@ -15,3 +15,4 @@ require('./bootstrap');
 
 require('./components/Example');
 require('./components/EmployeesQuantity');
+require('./components/BreakfastList');
