@@ -90,7 +90,11 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::find($id);
+        $users = User::where("type","employee")->get();
+        $places = Place::all();
+        $tags = Tag::all();
+        return view('admin.events.show',compact('event','users','places', 'tags'));
     }
 
     /**
@@ -163,6 +167,10 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Event::find($id);
+        $event->cancelled_at = Carbon::now()->format('Y-m-d');
+        $event->status = 'canceled';
+        $event->save();
+        return redirect()->route('admin.events.index')->with('status','Event canceled successfully.');  
     }
 }
