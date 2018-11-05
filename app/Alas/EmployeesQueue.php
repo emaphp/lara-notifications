@@ -35,7 +35,7 @@ class EmployeesQueue
     public function current()
     {
         $lastCreated = BreakfastLog::whereNotNull('user_id')->orderBy('created_at')->first();
-        if($lastCreated->isNotEmpty())
+        if($lastCreated!==null)
         {
             $this->currentEmployee = $lastCreated->user();
         }
@@ -48,7 +48,7 @@ class EmployeesQueue
         {
             if($this->currentEmployee === null)
             {
-                $nextEmployee = $this->first();
+                $nextEmployee = null;
             }
             else
             {
@@ -79,7 +79,7 @@ class EmployeesQueue
         {
             if($this->currentEmployee === null)
             {
-                $prevEmployee = $this->last();
+                $prevEmployee = null;
             }
             else
             {
