@@ -9,12 +9,10 @@ class EmployeesQueue
 {
 
     protected $queue;
-    protected $currentEmployee;
 
     public function __construct()
     {
         $this->queue = User::where("type","employee")->whereNotNull('order')->orderBy('order')->get();
-        $this->currentEmployee = null;
     }
 
     public function getAll()
@@ -34,25 +32,27 @@ class EmployeesQueue
 
     public function current()
     {
-        $lastCreated = BreakfastLog::whereNotNull('user_id')->orderBy('created_at')->first();
+        $currentEmployee = null;
+        $lastCreated = BreakfastLog::whereNotNull('user_id')->orderBy('created_at','desc')->first();
         if($lastCreated!==null)
         {
-            $this->currentEmployee = $lastCreated->user();
+            $currentEmployee = $lastCreated->user()->first();
         }
-        return $this->currentEmployee;
+        return $currentEmployee;
     }
 
     public function next($user_id = null)
     {
         if($user_id === null)
         {
-            if($this->currentEmployee === null)
+            $currentEmployee = $this->current();
+            if($currentEmployee === null)
             {
                 $nextEmployee = null;
             }
             else
             {
-                $orderCurrent = $this->currentEmployee->order;
+                $orderCurrent = $currentEmployee->order;
                 $nextEmployee = $this->queue->where("order",$orderCurrent+1)->first();
                 if($nextEmployee == null)
                 {
@@ -77,13 +77,14 @@ class EmployeesQueue
     {
         if($user_id === null)
         {
-            if($this->currentEmployee === null)
+            $currentEmployee = $this->current();
+            if($currentEmployee === null)
             {
                 $prevEmployee = null;
             }
             else
             {
-                $orderCurrent = $this->currentEmployee->order;
+                $orderCurrent = $currentEmployee->order;
                 $prevEmployee = $this->queue->where("order",$orderCurrent-1)->first();
                 if($prevEmployee == null)
                 {

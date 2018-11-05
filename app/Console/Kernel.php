@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\UpcomingEventNotification::class,
         Commands\UpdateEventStatus::class,
+        Commands\ScheduleBreakfastDelegate::class,
     ];
 
     /**
@@ -34,6 +35,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command(Commands\UpdateEventStatus::class)
             ->everyMinute();
+
+        $schedule->command(Commands\ScheduleBreakfastDelegate::class)
+            ->mondays();
     }
 
     /**
