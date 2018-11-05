@@ -25,3 +25,5 @@ Route::get('/employees/quantity', 'EmployeeController@getEmployeeQuantity');
 //Route::apiResource('employees', 'EmployeeController');
 
 Route::get('/pending_events/{year}/{month}','EventListController@getPendingEvents')->name('api.pendingEvents');
+
+Route::get('/breakfastList' , 'BreakfastListController@getBreakfastEmployeeList')->name('api.breakfastList');
