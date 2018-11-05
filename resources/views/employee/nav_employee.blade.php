@@ -25,6 +25,12 @@
                     Events
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('breakfast') }}">
+                    <span data-feather="users"></span>
+                    Breakfast
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

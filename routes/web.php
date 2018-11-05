@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('notifications', 'Employee\NotificationController');
         Route::resource('profile', 'Employee\ProfileController');
         Route::resource('events', 'Employee\EventController');
+        Route::get('/breakfast', function() {
+            return view('/employee/breakfast/index');
+        })->name('breakfast');
     });
 
 });
