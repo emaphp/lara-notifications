@@ -12,7 +12,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "miroc/laravel-adminer": "^4.5",
-        "tightenco/ziggy": "v0.6.8.1"
+        "tightenco/ziggy": "v0.6.8.1",
+        "twilio/sdk": "^5.24"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
