@@ -34,8 +34,7 @@ class EmployeesQueue
     {
         $currentEmployee = null;
         $lastCreated = BreakfastLog::whereNotNull('user_id')->orderBy('created_at','desc')->first();
-        if($lastCreated!==null)
-        {
+        if ($lastCreated!==null) {
             $currentEmployee = $lastCreated->user()->first();
         }
         return $currentEmployee;
@@ -43,64 +42,65 @@ class EmployeesQueue
 
     public function next($user_id = null)
     {
-        if($user_id === null)
-        {
+        if (is_null($user_id)) {
             $currentEmployee = $this->current();
-            if($currentEmployee === null)
-            {
+            if (is_null($currentEmployee)) {
                 $nextEmployee = null;
             }
-            else
-            {
-                $orderCurrent = $currentEmployee->order;
-                $nextEmployee = $this->queue->where("order",$orderCurrent+1)->first();
-                if($nextEmployee == null)
-                {
-                    $nextEmployee = $this->first();
-                }
+            else {
+                $nextEmployee = $this->nextUser($currentEmployee);
             }
         }
-        else
-        {
+        else {
             $user = $this->queue->find($user_id);
-            $orderCurrent = $user->order;
-            $nextEmployee = $this->queue->where("order",$orderCurrent+1)->first();
-            if($nextEmployee == null)
-            {
-                $nextEmployee = $this->first();
-            }
+            $nextEmployee = $this->nextUser($user);
+        }
+        return $nextEmployee;
+    }
+
+    private function nextUser($user)
+    {
+        $orderCurrent = $user->order;
+        $quantityEmployees = $this->queue->count();
+        $newOrder = ($orderCurrent % $quantityEmployees) + 1;
+        $nextEmployee = $this->queue->where("order",$newOrder)->first();
+        if (is_null($nextEmployee)) {
+            $nextEmployee = $this->first();
         }
         return $nextEmployee;
     }
 
     public function prev($user_id = null)
     {
-        if($user_id === null)
-        {
+        if (is_null($user_id)) {
             $currentEmployee = $this->current();
-            if($currentEmployee === null)
-            {
+            if (is_null($currentEmployee)) {
                 $prevEmployee = null;
             }
-            else
-            {
-                $orderCurrent = $currentEmployee->order;
-                $prevEmployee = $this->queue->where("order",$orderCurrent-1)->first();
-                if($prevEmployee == null)
-                {
-                    $prevEmployee = $this->last();
-                }
+            else {
+                $prevEmployee = $this->prevUser($currentEmployee);
             }
         }
-        else
-        {
+        else {
             $user = $this->queue->find($user_id);
-            $orderCurrent = $user->order;
-            $prevEmployee = $this->queue->where("order",$orderCurrent-1)->first();
-            if($prevEmployee == null)
-            {
-                $prevEmployee = $this->last();
-            }
+            $prevEmployee = $this->prevUser($user);
+        }
+        return $prevEmployee;
+    }
+
+    private function prevUser($user)
+    {
+        $orderCurrent = $user->order;
+        $quantityEmployees = $this->queue->count();
+        if ($orderCurrent-1 == 0) {
+            $newOrder = $quantityEmployees;
+        }
+        else {
+            $newOrder = $orderCurrent-1;
+        }
+        $prevEmployee = $this->queue->where("order",$newOrder)->first();
+        if (is_null($prevEmployee)) {
+            $prevEmployee = $this->last();
         }
         return $prevEmployee;
     }
