@@ -4,6 +4,7 @@ namespace Alas\EmployeesQueue;
 
 use App\User;
 use App\BreakfastLog;
+use Illuminate\Database\Eloquent\Collection;
 
 class EmployeesQueue
 {
@@ -103,6 +104,16 @@ class EmployeesQueue
             }
         }
         return $prevEmployee;
+    }
+
+    public function getAllByPivot($pivot, $total)
+    {
+        $employeesOrder = $this->queue->map(function ($employee) use ($pivot, $total){
+            $employee["orderNew"] = ($employee['order'] + $pivot) % $total;
+            return $employee;
+        });
+
+        return $employeesOrder->sortBy("orderNew");
     }
 
 }
