@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\UpcomingEventNotification::class,
         Commands\UpdateEventStatus::class,
         Commands\ScheduleBreakfastDelegate::class,
+        Commands\SendBreakfastNotifications::class,
     ];
 
     /**
@@ -38,6 +39,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->command(Commands\ScheduleBreakfastDelegate::class)
             ->mondays();
+
+        $schedule->command(Commands\SendBreadfastNotifications::class)
+            ->mondays()
+            ->tuesdays()
+            ->at('13:00');
     }
 
     /**
