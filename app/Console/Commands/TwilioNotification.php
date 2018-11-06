@@ -38,7 +38,7 @@ class TwilioNotification extends Command
      */
     public function handle()
     {
-        $number = $this->ask('What is your number? (format: "+[area code][number]")');
+        $number = $this->ask('What is your number?');
 
         $sid = config('whatsapp.sid');
         $token = config('whatsapp.token');
@@ -46,7 +46,7 @@ class TwilioNotification extends Command
 
         $client->messages->create(
             // the number you'd like to send the message to
-            'whatsapp:'.$number,
+            whatsappPhone($number),
             array(
                 // A Twilio phone number you purchased at twilio.com/console
                 'from' => config('whatsapp.number'),
