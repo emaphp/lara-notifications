@@ -105,4 +105,38 @@ class EmployeesQueue
         return $prevEmployee;
     }
 
+    public function insertBefore($user, $beforeUser)
+    {
+        if (is_null($user->order) && $this->queue->contains($beforeUser)) {
+            $orderBeforeUser = $beforeUser->order;
+
+            $user->order = $orderBeforeUser;
+
+            $userUpdate = User::find($user->id);
+            $userUpdate->order = $user->order;
+            $userUpdate->save();
+
+            $newQueue = $this->queue->map(function ($employee) use ($orderBeforeUser) {
+                if ($employee->order >= $orderBeforeUser) {
+                    $employee->order += 1;
+
+                    $userUpdate = User::find($employee->id);
+                    $userUpdate->order = $employee->order;
+                    $userUpdate->save();
+                }
+                return $employee;
+            });
+
+            $newQueue->push($user);
+
+            $this->queue = $newQueue->sortBy("order");
+
+            return $user->id;
+        }
+        else {
+            return false;
+        }
+
+    }
+
 }
