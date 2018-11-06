@@ -19,7 +19,7 @@ class TwilioNotification extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send notification to phone number with area code';
 
     /**
      * Create a new command instance.
@@ -38,19 +38,20 @@ class TwilioNotification extends Command
      */
     public function handle()
     {
-        $sid = 'AC19e2dcc68b0f758969d0cf807721af4a';
-        $token = '459308477dc32601b597efadd30a94b5';
-        $client = new Client($sid, $token);
+        $number = $this->ask('What is your number?');
 
+        $sid = config('whatsapp.sid');
+        $token = config('whatsapp.token');
+        $client = new Client($sid, $token);
 
         $client->messages->create(
             // the number you'd like to send the message to
-            'whatsapp:+5492804661836',
+            whatsappPhone($number),
             array(
                 // A Twilio phone number you purchased at twilio.com/console
-                'from' => 'whatsapp:+14155238886',
+                'from' => config('whatsapp.number'),
                 // the body of the text message you'd like to send
-                'body' => 'Hey Jenny! Good luck on the bar exam!'
+                'body' => 'Testing Twilio WhatsApp API'
             )
         );
     }
