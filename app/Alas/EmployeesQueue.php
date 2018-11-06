@@ -53,7 +53,9 @@ class EmployeesQueue
             else
             {
                 $orderCurrent = $currentEmployee->order;
-                $nextEmployee = $this->queue->where("order",$orderCurrent+1)->first();
+                $quantityEmployees = $this->queue->count();
+                $newOrder = ($orderCurrent % $quantityEmployees) + 1;
+                $nextEmployee = $this->queue->where("order",$newOrder)->first();
                 if($nextEmployee == null)
                 {
                     $nextEmployee = $this->first();
@@ -64,7 +66,9 @@ class EmployeesQueue
         {
             $user = $this->queue->find($user_id);
             $orderCurrent = $user->order;
-            $nextEmployee = $this->queue->where("order",$orderCurrent+1)->first();
+            $quantityEmployees = $this->queue->count();
+            $newOrder = ($orderCurrent % $quantityEmployees) + 1;
+            $nextEmployee = $this->queue->where("order",$newOrder)->first();
             if($nextEmployee == null)
             {
                 $nextEmployee = $this->first();

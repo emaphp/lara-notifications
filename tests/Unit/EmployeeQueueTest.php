@@ -44,6 +44,14 @@ class EmployeeQueueTest extends TestCase
         $this->assertEquals($user, $nextUser);
     }
 
+    public function testNextLastUser()
+    {
+        $queue = new EmployeesQueue();
+        $user = User::find(3);
+        $nextUser = $queue->next(5);
+        $this->assertEquals($user, $nextUser);
+    }
+
     public function testPrevCurrent()
     {
         $queue = new EmployeesQueue();
@@ -57,6 +65,14 @@ class EmployeeQueueTest extends TestCase
         $queue = new EmployeesQueue();
         $user = User::find(3);
         $prevUser = $queue->prev(4);
+        $this->assertEquals($user, $prevUser);
+    }
+
+    public function testPrevFirstUser()
+    {
+        $queue = new EmployeesQueue();
+        $user = User::find(5);
+        $prevUser = $queue->prev(3);
         $this->assertEquals($user, $prevUser);
     }
 
