@@ -105,4 +105,19 @@ class EmployeesQueue
         return $prevEmployee;
     }
 
+
+    public function postponeBreakfast()
+    {
+        $year = Carbon::now()->year;
+        $week = Carbon::now()->weekOfYear;
+
+        $breakfast = BreakfastLog::whereNotNull('user_id')
+                    ->where('year','=',$year)
+                    ->where('week','=',$week)
+                    ->get();
+        $breakfast->user_id = NULL;
+        $breakfast->order = NULL; 
+        $breakfast->save();
+    }
+
 }
