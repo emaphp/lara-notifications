@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use Alas\EmployeesQueue\EmployeesQueue;
+use Alas\EmployeesQueue;
 use Tests\TestCase;
 use App\User;
 
