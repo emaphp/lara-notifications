@@ -52,7 +52,7 @@
 
             <div class="form-group">
                 <label for="place">Place:</label>
-                <input type="text" name="place" id="place" class="form-control" value="{{ $event->place->name}}" readOnly>
+                <input type="text" name="place" id="place" class="form-control" value="{{ $event->place ? $event->place->id == NULL ?  : $event->place->name : '' }}" readOnly>
           </div>
 
             <div class="form-group">
