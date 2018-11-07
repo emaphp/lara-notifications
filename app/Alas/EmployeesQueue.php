@@ -4,6 +4,7 @@ namespace Alas\EmployeesQueue;
 
 use App\User;
 use App\BreakfastLog;
+use Carbon\Carbon;
 
 class EmployeesQueue
 {
@@ -115,9 +116,11 @@ class EmployeesQueue
                     ->where('year','=',$year)
                     ->where('week','=',$week)
                     ->get();
-        $breakfast->user_id = NULL;
-        $breakfast->order = NULL; 
-        $breakfast->save();
+        if(!is_null($breakfast)){
+            $breakfast->user_id = NULL;
+            $breakfast->order = NULL; 
+            $breakfast->save();
+        }
     }
 
 }
