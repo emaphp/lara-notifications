@@ -1,6 +1,6 @@
 <?php
 
-namespace Alas\EmployeesQueue;
+namespace Alas;
 
 use App\User;
 use App\BreakfastLog;
@@ -158,7 +158,7 @@ class EmployeesQueue
         $breakfast = BreakfastLog::whereNotNull('user_id')
                     ->where('year','=',$year)
                     ->where('week','=',$week)
-                    ->get();
+                    ->first();
         if(!is_null($breakfast)){
             $breakfast->user_id = NULL;
             $breakfast->order = NULL; 

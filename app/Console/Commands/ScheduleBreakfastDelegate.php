@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use Alas\EmployeesQueue\EmployeesQueue;
+use Alas\EmployeesQueue;
 use App\BreakfastLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
