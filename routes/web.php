@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('employees', 'Admin\EmployeeController');
         Route::resource('events', 'Admin\EventController');
         Route::resource('places', 'Admin\PlaceController');
+        Route::resource('breakfast', 'Admin\BreakfastController');
+        Route::post('/breakfast/add_user', 'Admin\BreakfastController@add_user')->name('breakfast.add_user');
     });
 
     Route::group(['middleware' => 'employee'], function () {
