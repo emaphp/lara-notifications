@@ -35,6 +35,9 @@ class CommandManager
             $invoker->setCommand($cmd);
             $command_response = $invoker->run();
 
+            if (is_array($command_response)) {
+                $command_response = implode(PHP_EOL, $command_response);
+            }
             return $command_response;
         }
         return "No se encontro el comando";
