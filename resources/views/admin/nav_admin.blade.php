@@ -31,6 +31,12 @@
                     Tags
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.breakfast.index') }}">
+                    <span data-feather="users"></span>
+                    Breakfast
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

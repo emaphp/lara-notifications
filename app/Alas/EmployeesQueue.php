@@ -1,10 +1,11 @@
 <?php
 
-namespace Alas\EmployeesQueue;
+namespace Alas;
 
 use App\User;
 use App\BreakfastLog;
 use Illuminate\Database\Eloquent\Collection;
+use Carbon\Carbon;
 
 class EmployeesQueue
 {
@@ -146,6 +147,22 @@ class EmployeesQueue
         }
         else {
             return false;
+        }
+    }
+
+    public function postponeBreakfast()
+    {
+        $year = Carbon::now()->year;
+        $week = Carbon::now()->weekOfYear;
+
+        $breakfast = BreakfastLog::whereNotNull('user_id')
+                    ->where('year','=',$year)
+                    ->where('week','=',$week)
+                    ->first();
+        if(!is_null($breakfast)){
+            $breakfast->user_id = NULL;
+            $breakfast->order = NULL; 
+            $breakfast->save();
         }
     }
 
