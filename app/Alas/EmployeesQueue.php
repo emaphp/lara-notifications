@@ -149,4 +149,32 @@ class EmployeesQueue
         }
     }
 
+    public function remove($user)
+    {
+        if (!is_null($user->order)) {
+            $orderUser = $user->order;
+
+            $userUpdate = User::find($user->id);
+            $userUpdate->order = null;
+            $userUpdate->save();
+
+            foreach ($this->queue as $employee) {
+                if ($employee->order > $orderUser) {
+                    $employee->order -=1;
+
+                    $userUpdate = User::find($employee->id);
+                    $userUpdate->order = $employee->order;
+                    $userUpdate->save();
+                }
+            }
+
+            $this->queue = User::where("type","employee")->whereNotNull('order')->orderBy('order')->get();
+
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 }

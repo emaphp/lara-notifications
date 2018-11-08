@@ -76,6 +76,13 @@ class EmployeeQueueTest extends TestCase
         $this->assertEquals($user, $prevUser);
     }
 
+    public function testRemove()
+    {
+        $queue = new EmployeesQueue();
+        $user = User::find(3);
+        $this->assertTrue($queue->remove($user));
+    }
+
     public function testInsertBefore()
     {
         $queue = new EmployeesQueue();
