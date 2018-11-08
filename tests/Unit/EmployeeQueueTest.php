@@ -81,7 +81,15 @@ class EmployeeQueueTest extends TestCase
         $queue = new EmployeesQueue();
         $user = User::find(2);
         $beforeUser = User::find(4);
-        $this->assertEquals(2,$queue->insertBefore($user,$beforeUser));
+        $this->assertEquals(2, $queue->insertBefore($user, $beforeUser));
+    }
+
+    public function testPostponeBreakfast()
+    {
+        $queue = new EmployeesQueue();
+        $queue->postponeBreakfast();
+        $user = $queue->current();
+        $this->assertNull($user);
     }
 
 }
