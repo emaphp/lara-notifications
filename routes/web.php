@@ -36,8 +36,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('employees', 'Admin\EmployeeController');
         Route::resource('events', 'Admin\EventController');
         Route::resource('places', 'Admin\PlaceController');
+
+        Route::get('/breakfast/add_user', 'Admin\BreakfastController@view_add_user')->name('breakfast.view_add_user');
+        Route::get('/breakfast/remove_user', 'Admin\BreakfastController@view_remove_user')->name('breakfast.view_remove_user');
+        Route::post('/breakfast/add', 'Admin\BreakfastController@add_user')->name('breakfast.add_user');
+        Route::post('/breakfast/remove', 'Admin\BreakfastController@remove_user')->name('breakfast.remove_user');
         Route::resource('breakfast', 'Admin\BreakfastController');
-        Route::post('/breakfast/add_user', 'Admin\BreakfastController@add_user')->name('breakfast.add_user');
     });
 
     Route::group(['middleware' => 'employee'], function () {

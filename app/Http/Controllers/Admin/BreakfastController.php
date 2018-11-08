@@ -17,12 +17,7 @@ class BreakfastController extends Controller
      */
     public function index()
     {
-        $employees = User::where('type','employee')->get();
-        $users = $employees->where('order', null);
-        $usersInQueue = User::whereNotNull('order')->get();
-        $lastBL = BreakfastLog::whereNotNull('user_id')->orderBy('created_at','desc')->first();
-        $lastDelegate = $lastBL->user()->first();
-        return view('admin.breakfast.index', compact('users','usersInQueue','lastDelegate'));
+        return view('admin.breakfast.index');
     }
 
     /**
@@ -91,16 +86,43 @@ class BreakfastController extends Controller
         //
     }
 
+    public function view_add_user(){
+        $employees = User::where('type','employee')->get();
+        $users = $employees->where('order', null);
+        $usersInQueue = User::whereNotNull('order')->get();
+        $lastBL = BreakfastLog::whereNotNull('user_id')->orderBy('created_at','desc')->first();
+        $lastDelegate = $lastBL->user()->first();
+        return view('admin.breakfast.add_user',compact('users','usersInQueue','lastDelegate'));
+    }
+
+    public function view_remove_user(){
+        $usersInQueue = User::whereNotNull('order')->get();
+        return view('admin.breakfast.remove_user',compact('usersInQueue'));
+    }
+
     public function add_user(Request $request){
         $user = User::find($request->get('addTo'));
         $beforeUser = User::find($request->get('before'));
         $queue = new EmployeesQueue();
         $result = $queue->insertBefore($user,$beforeUser);
         if ($result){
-            return redirect()->route('admin.breakfast.index')->with('status','The user could be added successfully.');
+            return redirect()->route('admin.breakfast.index')->with('status','The user was successfully added.');
         }
         else {
             return redirect()->route('admin.breakfast.index')->with('error','Error! The user could not be added.');
+        }
+    }
+
+    public function remove_user(Request $request)
+    {
+        $user = User::find($request->get('removeTo'));
+        $queue = new EmployeesQueue();
+        $result = $queue->remove($user);
+        if ($result){
+            return redirect()->route('admin.breakfast.index')->with('status','The user was successfully removed.');
+        }
+        else {
+            return redirect()->route('admin.breakfast.index')->with('error','Error! The user could not be removed.');
         }
     }
 }
