@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(Commands\ScheduleBreakfastDelegate::class)
             ->mondays();
 
-        $schedule->command(Commands\SendBreadfastNotifications::class)
+        $schedule->command(Commands\SendBreakfastNotifications::class)
             ->mondays()
             ->tuesdays()
             ->at('13:00');
