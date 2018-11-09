@@ -6,7 +6,7 @@ use App\BreakfastLog;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Alas\EmployeesQueue\EmployeesQueue;
+use Alas\EmployeesQueue;
 
 class BreakfastController extends Controller
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use Alas\EmployeesQueue\EmployeesQueue;
+use Alas\EmployeesQueue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
