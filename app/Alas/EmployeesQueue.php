@@ -156,13 +156,41 @@ class EmployeesQueue
         $week = Carbon::now()->weekOfYear;
 
         $breakfast = BreakfastLog::whereNotNull('user_id')
-                    ->where('year','=',$year)
-                    ->where('week','=',$week)
-                    ->first();
-        if(!is_null($breakfast)){
+            ->where('year', '=', $year)
+            ->where('week', '=', $week)
+            ->first();
+        if (!is_null($breakfast)) {
             $breakfast->user_id = NULL;
-            $breakfast->order = NULL; 
+            $breakfast->order = NULL;
             $breakfast->save();
+        }
+    }
+
+    public function remove($user)
+    {
+        if (!is_null($user->order)) {
+            $orderUser = $user->order;
+
+            $userUpdate = User::find($user->id);
+            $userUpdate->order = null;
+            $userUpdate->save();
+
+            foreach ($this->queue as $employee) {
+                if ($employee->order > $orderUser) {
+                    $employee->order -=1;
+
+                    $userUpdate = User::find($employee->id);
+                    $userUpdate->order = $employee->order;
+                    $userUpdate->save();
+                }
+            }
+
+            $this->queue = User::where("type","employee")->whereNotNull('order')->orderBy('order')->get();
+
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
