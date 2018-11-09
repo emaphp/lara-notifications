@@ -54083,6 +54083,9 @@ module.exports = __webpack_require__(553);
 "use strict";
 
 
+/**
+ * Created by julieta on 9/11/18.
+ */
 __webpack_require__(554);
 
 /***/ }),
@@ -54148,7 +54151,9 @@ var BreakfastList = function (_Component) {
             var _this2 = this;
 
             _axios2.default.get((0, _route2.default)(this.props.employeesCountUrl)).then(function (response) {
-                _this2.setState({ employeesList: response.data.employeesList });
+                _this2.setState({
+                    employeesList: response.data.employeesList
+                });
             }).catch(function (err) {
                 return console.log(err);
             });

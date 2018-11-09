@@ -109,7 +109,7 @@ class EmployeesQueue
     public function getAllByPivot($pivot, $total)
     {
         $employeesOrder = $this->queue->map(function ($employee) use ($pivot, $total){
-            $employee["orderNew"] = ($employee['order'] + $pivot) % $total;
+            $employee['orderNew'] = ($employee['order'] + $total - $pivot) % $total;
             return $employee;
         });
 

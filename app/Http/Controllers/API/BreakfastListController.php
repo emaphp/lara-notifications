@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Alas\EmployeesQueue\EmployeesQueue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -66,12 +67,18 @@ class BreakfastListController extends Controller
 
     public function getBreakfastEmployeeList()
     {
-        $employees = User::whereNotNull('order')->where('type', '=', 'employee'); 
-        $employees = $employees->get()->toArray();
-        
-       return response()->json([
-           'employeesList' => $employees
-       ]);
+        /*$employees = User::whereNotNull('order')->where('type', '=', 'employee');
+        $employees = $employees->get()->toArray();*/
+
+        $queue = new EmployeesQueue();
+        $orderCurrentEmployee = $queue->current()->order;
+        $totalEmployees = $queue->getAll()->count();
+        $employees = $queue->getAllByPivot($orderCurrentEmployee,$totalEmployees);
+        $employeesArray = $employees->values()->all();
+
+        return response()->json([
+            'employeesList' => $employeesArray
+        ]);
 
     }
 }
