@@ -17,7 +17,9 @@ export default class BreakfastList extends Component {
     componentDidMount() {
         axios.get(route(this.props.employeesCountUrl))
             .then(response => {
-                this.setState({ employeesList: response.data.employeesList });
+                this.setState({
+                    employeesList: response.data.employeesList
+                });
             })
             .catch(err => console.log(err));
     }
@@ -28,7 +30,7 @@ export default class BreakfastList extends Component {
             <AppProvider>
                 <Card title="Employees Breakfast List" sectioned>
                 {
-                    this.state.employeesList.map( (user) =>
+                    this.state.employeesList.map((user) =>
                     <Employee key = {user.id} user = { user }/>
                 )}
                 </Card>

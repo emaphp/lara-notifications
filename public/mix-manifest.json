@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/js/unreadNotifications.js": "/js/unreadNotifications.js",
     "/js/pendingEvents.js": "/js/pendingEvents.js",
+    "/js/breakfastList.js": "/js/breakfastList.js",
     "/js/notification.js": "/js/notification.js"
 }

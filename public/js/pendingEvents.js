@@ -53794,8 +53794,7 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 
 
 /***/ }),
-/* 526 */,
-/* 527 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53811,7 +53810,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.default = route;
 
-var _UrlBuilder = __webpack_require__(528);
+var _UrlBuilder = __webpack_require__(527);
 
 var _UrlBuilder2 = _interopRequireDefault(_UrlBuilder);
 
@@ -53988,7 +53987,7 @@ function route(name, params, absolute, customZiggy) {
 };
 
 /***/ }),
-/* 528 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54047,6 +54046,7 @@ var UrlBuilder = function () {
 exports.default = UrlBuilder;
 
 /***/ }),
+/* 528 */,
 /* 529 */,
 /* 530 */,
 /* 531 */,
@@ -54108,7 +54108,7 @@ var _axios = __webpack_require__(209);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _route = __webpack_require__(527);
+var _route = __webpack_require__(526);
 
 var _route2 = _interopRequireDefault(_route);
 
@@ -54194,7 +54194,7 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _route = __webpack_require__(527);
+var _route = __webpack_require__(526);
 
 var _route2 = _interopRequireDefault(_route);
 
