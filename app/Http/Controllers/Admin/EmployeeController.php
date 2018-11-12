@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Alas\EmployeesQueue\EmployeesQueue;
 use Validator;
 use App\Profile;
 use App\User;
@@ -80,7 +81,7 @@ class EmployeeController extends Controller
         $user->notify(new VerifyEmail);
         $user->notify(new UserWelcome());
 
-        return redirect()->route('admin.employees.index')->with('success', 'User created successfully.');
+        return redirect()->route('admin.employees.index')->with('status', 'User created successfully.');
     }
 
     /**
@@ -129,6 +130,6 @@ class EmployeeController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('admin.employees.index')->with('success','Employee has ben successfully disabled');
+        return redirect()->route('admin.employees.index')->with('status','Employee has ben successfully disabled');
     }
 }

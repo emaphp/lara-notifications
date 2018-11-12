@@ -71,9 +71,19 @@ class BreakfastListController extends Controller
         $employees = $employees->get()->toArray();*/
 
         $queue = new EmployeesQueue();
-        $orderCurrentEmployee = $queue->current()->order;
+        $currentBfLog = $queue->currentBreakfastLog();
+        $userBfLog = $currentBfLog->user()->first();
+        if (is_null($currentBfLog)) {
+            $pivot = 1;
+        }
+        elseif ($userBfLog && $userBfLog->order) {
+            $pivot = $userBfLog->order;
+        }
+        else {
+            $pivot = $currentBfLog->order ?: 1;
+        }
         $totalEmployees = $queue->getAll()->count();
-        $employees = $queue->getAllByPivot($orderCurrentEmployee,$totalEmployees);
+        $employees = $queue->getAllByPivot($pivot,$totalEmployees);
         $employeesArray = $employees->values()->all();
 
         return response()->json([

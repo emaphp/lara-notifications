@@ -41,6 +41,13 @@ class EmployeesQueue
         return $currentEmployee;
     }
 
+    public function currentBreakfastLog()
+    {
+        $breakfastLogs = BreakfastLog::all();
+        $currentBreakfastLog = $breakfastLogs->sortByDesc('created_at')->first();
+        return $currentBreakfastLog;
+    }
+
     public function next($user_id = null)
     {
         if (is_null($user_id)) {
@@ -154,7 +161,7 @@ class EmployeesQueue
         if (!is_null($user->order)) {
             $orderUser = $user->order;
 
-            $userUpdate = User::find($user->id);
+            $userUpdate = User::withTrashed()->find($user->id);
             $userUpdate->order = null;
             $userUpdate->save();
 
