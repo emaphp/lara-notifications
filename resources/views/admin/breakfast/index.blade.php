@@ -15,11 +15,14 @@
         @endif
         <div id="breakfast-list"></div>
         <div class="row" style="margin-top: 12px;">
-            <div class="col-6 text-center">
+            <div class="col-4 text-center">
                 <a class="btn btn-primary" href="{{ route('admin.breakfast.view_add_user')}}"><i class="fa fa-plus"></i> Add a User</a>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-4 text-center">
                 <a class="btn btn-primary" href="{{ route('admin.breakfast.view_remove_user')}}"><i class="fa fa-minus"></i> Remove a User</a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="btn btn-primary" href="{{ route('admin.breakfast.view_reassign_delegate')}}"><i class="fa fa-user-circle-o"></i> Reassign Delegate</a>
             </div>
         </div>
     </div>
