@@ -42,20 +42,16 @@ class ScheduleBreakfastDelegate extends Command
     {
         $year = Carbon::now()->year;
         $week = Carbon::now()->weekOfYear;
-        $lastBreakfastLogCreated = BreakfastLog::whereNotNull('user_id')->orderBy('created_at','desc')->first();
-        if ($lastBreakfastLogCreated === null || $lastBreakfastLogCreated->year !== $year || $lastBreakfastLogCreated->week !== $week) {
+        $lastBreakfastLogCreated = BreakfastLog::where('year',$year)->where('week',$week)->first();
+        if (!$lastBreakfastLogCreated) {
             $queue = new EmployeesQueue();
             $delegate = null;
             $current = $queue->current();
-            if($current === null)
-            {
+            if($current === null) {
                 $delegate = $queue->first();
-            }
-            else
-            {
+            } else {
                 $delegate = $queue->next();
-                if($delegate === null)
-                {
+                if($delegate === null) {
                     $delegate = $queue->first();
                 }
             }
