@@ -44,6 +44,9 @@ class Kernel extends ConsoleKernel
             ->mondays()
             ->tuesdays()
             ->at('13:00');
+
+        $schedule->command(Commands\SendBirthdayNotification::class)
+            ->dailyAt('08:00');      
     }
 
     /**
