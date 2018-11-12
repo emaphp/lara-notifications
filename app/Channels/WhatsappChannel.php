@@ -16,11 +16,9 @@ class WhatsappChannel
             $token = config('whatsapp.token');
             $client = new Client($sid, $token);
 
-            $telephone_in_format = 'whatsapp:+549'.$notifiable->profile->telephone;
-
             $client->messages->create(
                 // Number receiver
-                $telephone_in_format,
+                whatsappPhone($notifiable->profile->telephone),
                 array(
                     'from' => config('whatsapp.number'),
                     'body' => $message
