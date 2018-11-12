@@ -15,8 +15,14 @@ class ListCommand implements CommandInterface
 
     public function execute()
     {
-        $user = $this->queue->current()? $this->queue->current()->order : -1;
-        $list = $this->queue->getAllByPivot($user, count($this->queue->getAll()));
+        $order = 1;
+        if ($this->queue->currentBreakfastLog()->user) {
+            $order = $this->queue->currentBreakfastLog()->order;
+        } elseif ($this->queue->current()) {
+            $order = $this->queue->current()->order + 1;
+        }
+
+        $list = $this->queue->getAllByPivot($order, count($this->queue->getAll()));
         return $list->sortBy('orderNew')->pluck('name')->toArray();
     }
 }
