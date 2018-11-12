@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use Alas\EmployeesQueue\EmployeesQueue;
+use Alas\EmployeesQueue;
 use App\User;
 
 class UserObserver

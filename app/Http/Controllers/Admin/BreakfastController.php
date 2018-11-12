@@ -86,7 +86,8 @@ class BreakfastController extends Controller
         //
     }
 
-    public function view_add_user(){
+    public function view_add_user()
+    {
         $employees = User::where('type','employee')->get();
         $users = $employees->where('order', null);
         $usersInQueue = User::whereNotNull('order')->get();
@@ -95,9 +96,19 @@ class BreakfastController extends Controller
         return view('admin.breakfast.add_user',compact('users','usersInQueue','lastDelegate'));
     }
 
-    public function view_remove_user(){
+    public function view_remove_user()
+    {
         $usersInQueue = User::whereNotNull('order')->get();
         return view('admin.breakfast.remove_user',compact('usersInQueue'));
+    }
+
+    public function view_reassign_delegate()
+    {
+        $queue = new EmployeesQueue();
+        $usersInQueue = $queue->getAll();
+        $lastBL = $queue->currentBreakfastLog();
+        $delegate = $lastBL->user()->first();
+        return view('admin.breakfast.reassign_delegate',compact('usersInQueue','delegate'));
     }
 
     public function add_user(Request $request){
@@ -124,5 +135,30 @@ class BreakfastController extends Controller
         else {
             return redirect()->route('admin.breakfast.index')->with('error','Error! The user could not be removed.');
         }
+    }
+
+    public function reassign_delegate(Request $request)
+    {
+        $queue = new EmployeesQueue();
+        $currentBL = $queue->currentBreakfastLog();
+        $newDelegate = User::find($request->get('newDelegate'));
+        $currentDelegate = $currentBL->user()->first();
+
+        if (!is_null($currentDelegate)) {
+            $currentDelegate = User::find($currentBL->user_id);
+            $orderCurrentDelegate = $currentDelegate->order;
+            $currentDelegate->order = $newDelegate->order;
+            $newDelegate->order = $orderCurrentDelegate;
+            $currentDelegate->save();
+            $newDelegate->save();
+        }
+
+        $bfLogUpdate = BreakfastLog::find($currentBL->id);
+        $bfLogUpdate->user_id = $newDelegate->id;
+        $bfLogUpdate->order = $newDelegate->order;
+        $bfLogUpdate->save();
+
+        return redirect()->route('admin.breakfast.index')->with('status','The delegate was successfully changed.');
+
     }
 }
