@@ -12,6 +12,9 @@
                 <strong>Last Name:</strong> {{ $profile->last_name }}
             </div>
             <div class="col-12">
+                <strong>Birthdate:</strong> {{ $profile->birthdate ? $profile->birthdate : "-"}}
+            </div>
+            <div class="col-12">
                 <strong>Email:</strong> {{ $profile->user->email }}
             </div>
             <div class="col-12">
