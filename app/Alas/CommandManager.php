@@ -9,6 +9,7 @@
 namespace Alas;
 
 
+use Alas\Commands\CumpleCommand;
 use Alas\Commands\ListCommand;
 
 class CommandManager
@@ -27,6 +28,9 @@ class CommandManager
         switch ($command) {
             case 'list':
                 $cmd = new ListCommand(new EmployeesQueue());
+                break;
+            case 'cumple':
+                $cmd = new CumpleCommand();
                 break;
         }
 
