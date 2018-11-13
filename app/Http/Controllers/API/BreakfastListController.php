@@ -10,6 +10,13 @@ use App\BreakfastLog;
 
 class BreakfastListController extends Controller
 {
+    protected $employeesQueue;
+
+    public function __construct(EmployeesQueue $employeesQueue)
+    {
+        $this->employeesQueue = $employeesQueue;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -67,23 +74,17 @@ class BreakfastListController extends Controller
 
     public function getBreakfastEmployeeList()
     {
-        /*$employees = User::whereNotNull('order')->where('type', '=', 'employee');
-        $employees = $employees->get()->toArray();*/
+        $queue = $this->employeesQueue;
 
-        $queue = new EmployeesQueue();
-        $currentBfLog = $queue->currentBreakfastLog();
-        $userBfLog = $currentBfLog->user()->first();
-        if (is_null($currentBfLog)) {
-            $pivot = 1;
+        $order = 1;
+        if ($queue->currentBreakfastLog()->user) {
+            $order = $queue->currentBreakfastLog()->order;
+        } elseif ($queue->current()) {
+            $order = $queue->current()->order + 1;
         }
-        elseif ($userBfLog && $userBfLog->order) {
-            $pivot = $userBfLog->order;
-        }
-        else {
-            $pivot = $currentBfLog->order ?: 1;
-        }
+
         $totalEmployees = $queue->getAll()->count();
-        $employees = $queue->getAllByPivot($pivot,$totalEmployees);
+        $employees = $queue->getAllByPivot($order,$totalEmployees);
         $employeesArray = $employees->values()->all();
 
         return response()->json([

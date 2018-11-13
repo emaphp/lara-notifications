@@ -22,6 +22,10 @@
                 <input type="text" name="last_name" id="last_name" class="form-control" value="{{ $profile->last_name }}" required>
             </div>
             <div class="form-group">
+                <label for=birthdate">Birthdate:</label>
+                <input type="date" id="birthdate" class="form-control" name="birthdate" value="{{ $profile->birthdate }}">
+            </div>
+            <div class="form-group">
                 <label for="telephone">Telephone</label>
                 <input type="tel" name="telephone" id="telephone" class="form-control" placeholder="+dd (ddd) ddd-dddd" value="{{ $profile->telephone }}">
             </div>
