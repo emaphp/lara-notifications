@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="birthdate">Birthdate:</label>
-                <input type="date" name="birthdate" id="birthdate" class="form-control" value="{{ $profile->user->birthdate }}" required>
+                <input type="date" name="birthdate" id="birthdate" class="form-control" value="{{ $profile->birthdate }}" required>
             </div>
             <div style="margin-top: 20px;">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
