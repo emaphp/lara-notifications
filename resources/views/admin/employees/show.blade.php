@@ -4,6 +4,11 @@
 
     <div class="container" style="margin-top:45px;">
         <h1>Details of the employee {{ $user->name }}</h1>
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-12">
                 <strong>Email:</strong> {{ $user->email }}
@@ -15,7 +20,10 @@
                 <strong>Github Account:</strong> {{ $user->profile ? $user->profile->github_account : "-" }}
             </div>
             <div class="col-12">
-                @if (!($user->trashed()))
+                <strong>Birthdate:</strong> {{ $user->profile ? $user->profile->birthdate : "-" }}
+            </div>
+            @if (!($user->trashed()))
+                <div class="col-6">
                     <form action="{{route('admin.employees.destroy', $user->id)}}" method="post">
                         <div>
                             @csrf
@@ -23,8 +31,11 @@
                             <button class="btn btn-danger" type="submit"><i class="fa fa-minus-circle"></i> Disable User</button>
                         </div>
                     </form>
-                @endif
-            </div>
+                </div>
+                <div class="col-6">
+                    <a class="btn btn-primary" href="{{ route('admin.employees.edit', $user->id) }}"><i class="fa fa-pencil"></i> Edit User</a>
+                </div>
+            @endif
             <div class="col-12">
                 <a class="btn btn-link" href="{{ route('admin.employees.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a>
             </div>

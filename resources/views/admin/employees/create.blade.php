@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="margin-top:45px;">
         <h1>Create User</h1>
         <hr>
 
@@ -48,8 +48,18 @@
                 <input type="tel" name="phone" id="phone" class="form-control" placeholder="+dd (ddd) ddd-dddd" value="{{ old('phone') }}">
                 @if ($errors->has('phone'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
+                        <strong>{{ $errors->first('phone') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="birthdate">Birthdate:</label>
+                <input type="date" name="birthdate" id="birthdate" class="form-control" value="{{ old('birthdate') }}">
+                @if ($errors->has('birthdate'))
+                    <span class="text-danger" role="alert">
+                        <strong>{{ $errors->first('birthdate') }}</strong>
+                    </span>
                 @endif
             </div>
 

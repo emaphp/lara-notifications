@@ -51,7 +51,8 @@ class EmployeeController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'nullable|number',
+            'phone' => 'nullable|integer',
+            'birthdate' => 'nullable|date',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -75,6 +76,7 @@ class EmployeeController extends Controller
         $profile->user_id = $user->id;
         $profile->telephone = $request->get('phone')? $request->get('phone') : '';
         $profile->github_account = $request->get('github')? $request->get('github') : '';
+        $profile->birthdate = $request->get('birthdate')? $request->get('birthdate') : '';
         $profile->save();
 
         // Notifications to send verification email and store a new user in database
@@ -105,7 +107,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('admin.employees.edit', compact('user'));
     }
 
     /**
@@ -117,7 +121,23 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->email = $request->get('email');
+        $user->save();
+
+        $profile = $user->profile()->first();
+        if(is_null($profile)) {
+            $profile = new Profile();
+        }
+        $profile->user_id = $user->id;
+        $profile->first_name = $request->get('first_name')? $request->get('first_name') : '';
+        $profile->last_name = $request->get('last_name')? $request->get('last_name') : '';
+        $profile->telephone = $request->get('telephone')? $request->get('telephone') : '';
+        $profile->github_account = $request->get('github_account')? $request->get('github_account') : '';
+        $profile->birthdate = $request->get('birthdate')? $request->get('birthdate') : '';
+        $profile->save();
+
+        return redirect()->route('admin.employees.index')->with('status', 'User edited successfully.');
     }
 
     /**
