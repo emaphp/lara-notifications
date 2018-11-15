@@ -16,7 +16,7 @@
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" class="form-control" value="{{ $tag->name }}" required>
             </div>
-            <p><button type="submit" class="btn btn-primary" /><i class="fa fa-save"></i> Save</button>
+            <p><button type="submit" class="Polaris-Button" /><i class="fa fa-save"></i> Save</button>
         </form>
         <a class="btn btn-link" href="{{ route('admin.tags.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a> 
     </div>

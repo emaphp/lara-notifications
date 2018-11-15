@@ -86,7 +86,7 @@
 
 
             <div class="form-group" style="margin-top: 20px">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                <button type="submit" class="Polaris-Button"><i class="fa fa-save"></i> Save</button>
             </div>
         </form>
         <a class="btn btn-link" href="{{ route('admin.events.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a>

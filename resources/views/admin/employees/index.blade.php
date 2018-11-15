@@ -8,7 +8,7 @@
                 {{ session('status') }}
             </div>
         @endif
-        <a class="btn btn-primary" href="{{ route('admin.employees.create')}}"><i class="fa fa-plus"></i> Create new User</a>
+        <a class="Polaris-Button" href="{{ route('admin.employees.create')}}"><i class="fa fa-plus"></i> Create new User</a>
         <br>
         <br>
         <table class="table">
@@ -35,7 +35,7 @@
                         @endif
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('admin.employees.show', $user->id) }}"><i class="fa  fa-eye"></i> Show</a>
+                        <a class="Polaris-Button" href="{{ route('admin.employees.show', $user->id) }}"><i class="fa  fa-eye"></i> Show</a>
                     </td>
                 </tr>
             @endforeach

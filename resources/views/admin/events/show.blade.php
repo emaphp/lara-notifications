@@ -80,7 +80,7 @@
             </div>
 
             <div class="form-group" style="margin-top: 20px">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-minus-circle"></i> Cancel event</button>
+                <button type="submit" class="Polaris-Button"><i class="fa fa-minus-circle"></i> Cancel event</button>
             </div>
         </form>
         <a class="btn btn-link" href="{{ route('admin.events.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a>

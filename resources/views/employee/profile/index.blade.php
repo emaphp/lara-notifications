@@ -24,7 +24,7 @@
                 <strong>Github Account:</strong> {{ $profile->github_account ? $profile->github_account : "-" }}
             </div>
             <div class="col-12" style="margin-top: 20px;">
-                <a class="btn btn-primary" href="{{ route('profile.edit', $profile->id) }}"><i class="fa fa-pencil"></i> Edit Profile</a>
+                <a class="Polaris-Button" href="{{ route('profile.edit', $profile->id) }}"><i class="fa fa-pencil"></i> Edit Profile</a>
             </div>
         </div>
     </div>

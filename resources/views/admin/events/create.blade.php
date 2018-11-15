@@ -85,7 +85,7 @@
 
             <div class="row">
                 <div class="form-group col-md-12" style="margin-top: 20px">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Create Event</button>
+                    <button type="submit" class="Polaris-Button"><i class="fa fa-plus-circle"></i> Create Event</button>
                 </div>
             </div>
         </form>

@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary"><i class="fa fa-pencil fa-fw"></i> Reassign</button>
+            <button class="Polaris-Button"><i class="fa fa-pencil fa-fw"></i> Reassign</button>
         </div>
     </form>
     <a class="btn btn-link" href="{{ route('admin.breakfast.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a>

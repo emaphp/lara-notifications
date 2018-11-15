@@ -23,7 +23,7 @@
                     </select>
                 </div>
             </div>
-            <p><button type="submit" class="btn btn-primary" /><i class="fa fa-minus-circle"></i>  Remove</button>
+            <p><button type="submit" class="Polaris-Button" /><i class="fa fa-minus-circle"></i>  Remove</button>
         </form>
 
         <a class="btn btn-link" href="{{ route('admin.places.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a> 
