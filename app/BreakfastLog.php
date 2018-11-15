@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int year
  * @property int order
  * @property int user_id
+ * @property int fallback_user_id
  */
 class BreakfastLog extends Model
 {

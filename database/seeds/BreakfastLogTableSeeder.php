@@ -21,6 +21,7 @@ class BreakfastLogTableSeeder extends Seeder
                 'week' => $currentDay->weekOfYear,
                 'created_at' => $currentDay,
                 'updated_at' => $currentDay,
+                'fallback_user_id' => 3,
             ],
         ];
 

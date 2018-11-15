@@ -60,6 +60,7 @@ class ScheduleBreakfastDelegate extends Command
             $newBreakfastLog->order = $delegate->order;
             $newBreakfastLog->year = $year;
             $newBreakfastLog->week = $week;
+            $newBreakfastLog->fallback_user_id = $delegate->id;
             $newBreakfastLog->save();
         }
     }
