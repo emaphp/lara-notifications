@@ -13,18 +13,18 @@
                 {{ session('error') }}
             </div>
         @endif
-        <div id="breakfast-list"></div>
-        <div class="row" style="margin-top: 12px;">
+        <div class="row" style="margin: 12px 0px;">
             <div class="col-4 text-center">
-                <a class="btn btn-primary" href="{{ route('admin.breakfast.view_add_user')}}"><i class="fa fa-plus"></i> Add a User</a>
+                <a class="Polaris-Button" href="{{ route('admin.breakfast.view_add_user')}}"><i class="fa fa-plus"></i> Add a User</a>
             </div>
             <div class="col-4 text-center">
-                <a class="btn btn-primary" href="{{ route('admin.breakfast.view_remove_user')}}"><i class="fa fa-minus"></i> Remove a User</a>
+                <a class="Polaris-Button" href="{{ route('admin.breakfast.view_remove_user')}}"><i class="fa fa-minus"></i> Remove a User</a>
             </div>
             <div class="col-4 text-center">
-                <a class="btn btn-primary" href="{{ route('admin.breakfast.view_reassign_delegate')}}"><i class="fa fa-user-circle-o"></i> Reassign Delegate</a>
+                <a class="Polaris-Button" href="{{ route('admin.breakfast.view_reassign_delegate')}}"><i class="fa fa-user-circle-o"></i> Reassign Delegate</a>
             </div>
         </div>
+        <div id="breakfast-list"></div>
     </div>
 @endsection
 
