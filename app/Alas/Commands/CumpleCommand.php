@@ -18,9 +18,13 @@ class CumpleCommand implements CommandInterface
 
     public function execute()
     {
+        setlocale(LC_ALL, 'es_ES');
+        Carbon::setLocale('es');
         $currentDate = Carbon::now();
         $startWeek = $currentDate->startOfWeek(Carbon::MONDAY)->copy();
         $endWeek = $currentDate->endOfWeek(Carbon::SUNDAY)->copy();
+
+        $weeks = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
 
         $employees = User::where('type','employee')->get();
 
@@ -30,7 +34,7 @@ class CumpleCommand implements CommandInterface
                 $birthdate = Carbon::parse($profile->birthdate);
                 $birthdate->year = $currentDate->year;
                 if ($birthdate->greaterThanOrEqualTo($startWeek) && $birthdate->lessThanOrEqualTo($endWeek)) {
-                    $this->birthdays[$employee->id] = $employee->name . ' ' . $profile->birthdate;
+                    $this->birthdays[$employee->id] = $employee->name . ' (' . $weeks[$birthdate->dayOfWeek] . ' ' . $birthdate->day . ').';
                 }
             }
         }
