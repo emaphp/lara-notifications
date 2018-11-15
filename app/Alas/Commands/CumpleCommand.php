@@ -32,7 +32,7 @@ class CumpleCommand implements CommandInterface
                 $birthdate = Carbon::parse($profile->birthdate);
                 $birthdate->year = $currentDate->year;
                 if ($birthdate->greaterThanOrEqualTo($startWeek) && $birthdate->lessThanOrEqualTo($endWeek)) {
-                    $this->birthdays[$employee->id] = $employee->name . ' (' . $birthdate->formatLocalized('%A') . ' ' . $birthdate->day . ').';
+                    $this->birthdays[$employee->id] = $employee->name . ' (' . ucfirst($birthdate->formatLocalized('%A')) . ' ' . $birthdate->day . ').';
                 }
             }
         }
