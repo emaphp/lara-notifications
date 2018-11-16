@@ -10,6 +10,13 @@ use Alas\EmployeesQueue;
 
 class BreakfastController extends Controller
 {
+    protected $employeesQueue;
+
+    public function __construct(EmployeesQueue $employeesQueue)
+    {
+        $this->employeesQueue = $employeesQueue;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -104,7 +111,7 @@ class BreakfastController extends Controller
 
     public function view_reassign_delegate()
     {
-        $queue = new EmployeesQueue();
+        $queue = $this->employeesQueue;
         $usersInQueue = $queue->getAll();
         $lastBL = $queue->currentBreakfastLog();
         $delegate = $lastBL->user()->first();
@@ -114,7 +121,7 @@ class BreakfastController extends Controller
     public function add_user(Request $request){
         $user = User::find($request->get('addTo'));
         $beforeUser = User::find($request->get('before'));
-        $queue = new EmployeesQueue();
+        $queue = $this->employeesQueue;
         $result = $queue->insertBefore($user,$beforeUser);
         if ($result){
             return redirect()->route('admin.breakfast.index')->with('status','The user was successfully added.');
@@ -127,7 +134,7 @@ class BreakfastController extends Controller
     public function remove_user(Request $request)
     {
         $user = User::find($request->get('removeTo'));
-        $queue = new EmployeesQueue();
+        $queue = $this->employeesQueue;
         $result = $queue->remove($user);
         if ($result){
             return redirect()->route('admin.breakfast.index')->with('status','The user was successfully removed.');
@@ -139,7 +146,7 @@ class BreakfastController extends Controller
 
     public function reassign_delegate(Request $request)
     {
-        $queue = new EmployeesQueue();
+        $queue = $this->employeesQueue;
         $currentBL = $queue->currentBreakfastLog();
         $newDelegate = User::find($request->get('newDelegate'));
         $currentDelegate = $currentBL->user()->first();
@@ -161,4 +168,15 @@ class BreakfastController extends Controller
         return redirect()->route('admin.breakfast.index')->with('status','The delegate was successfully changed.');
 
     }
+
+    public function postpone_delegate()
+    {
+        $queue = $this->employeesQueue;
+        $queue->postponeBreakfast();
+        return redirect()->route('admin.breakfast.index')->with('status','The delegate was successfully postponed.');
+    }
+
+
+
+
 }
