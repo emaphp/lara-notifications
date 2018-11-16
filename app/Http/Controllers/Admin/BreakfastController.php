@@ -172,8 +172,12 @@ class BreakfastController extends Controller
     public function postpone_delegate()
     {
         $queue = $this->employeesQueue;
-        $queue->postponeBreakfast();
-        return redirect()->route('admin.breakfast.index')->with('status','The delegate was successfully postponed.');
+        if (!$queue->wasPostponed()) {
+            $queue->postponeBreakfast();
+            return redirect()->route('admin.breakfast.index')->with('status','The delegate was successfully postponed.');
+        } else {
+            return redirect()->route('admin.breakfast.index')->with('status','The current delegate is already postponed.');
+        }
     }
 
 
