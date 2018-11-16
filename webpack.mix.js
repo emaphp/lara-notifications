@@ -16,4 +16,5 @@ mix.react('resources/js/app.js', 'public/js')
     .react('resources/js/notification.js', 'public/js')
     .react('resources/js/pendingEvents.js', 'public/js')
     .react('resources/js/breakfastList.js', 'public/js')
+    .react('resources/js/breakfastHistorial.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');

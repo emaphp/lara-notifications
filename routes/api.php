@@ -29,3 +29,5 @@ Route::get('/pending_events/{year}/{month}','EventListController@getPendingEvent
 Route::get('/breakfastList' , 'BreakfastListController@getBreakfastEmployeeList')->name('api.breakfastList');
 
 Route::post('/twilio','TwilioController@messageResponse')->name('twilio');
+
+Route::get('/breakfastHistorial', 'BreakfastHistorialCrontroller@getBreakfastHistorial')->name('api.breakfastHistorial');
