@@ -16,6 +16,7 @@ export default class Event extends Component {
                 <p>End Date: { this.props.event.end_date  } </p>
                 <p>End Time { this.props.event.end_time  } </p>
                 <p>Place: { this.props.event.place? this.props.event.place.name : 'None' } </p>
+                <p>Status: { this.props.event.status }</p>
                 <button className="btn btn-link" onClick={ () => { window.location.href = route('events.show', [this.props.event.id]) }}>Go to event</button>
                 <p>--------------------------------------</p>
             </div>
