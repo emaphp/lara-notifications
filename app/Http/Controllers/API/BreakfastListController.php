@@ -85,10 +85,11 @@ class BreakfastListController extends Controller
 
         $totalEmployees = $queue->getAll()->count();
         $employees = $queue->getAllByPivot($order,$totalEmployees);
-        $employeesArray = $employees->values()->all();
+
+        ($employees->first())['postponed'] = $queue->wasPostponed();
 
         return response()->json([
-            'employeesList' => $employeesArray
+            'employeesList' => $employees->values()->all()
         ]);
 
     }
