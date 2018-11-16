@@ -201,4 +201,10 @@ class EmployeesQueue
         }
     }
 
+    public function wasPostponed()
+    {
+        $currentBreakfastLog = $this->currentBreakfastLog();
+        return is_null($currentBreakfastLog->user_id);
+    }
+
 }

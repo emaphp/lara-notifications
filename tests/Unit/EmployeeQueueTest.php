@@ -99,4 +99,10 @@ class EmployeeQueueTest extends TestCase
         $this->assertNull($user);
     }
 
+    public function testWasPostponed()
+    {
+        $queue = new EmployeesQueue();
+        $this->assertTrue($queue->wasPostponed());
+    }
+
 }
