@@ -72,6 +72,25 @@ $theme-colors: (
   "primary": #28a745
 );
 
+.danger {
+  border-color: #DE3618;
+  color: #DE3618;
+  background-color: #DE3618 !important;
+}
+
+.danger:hover {
+  border-color: #BF0711;
+}
+
 .note-editor.note-frame {
   margin-top: 0px;
+}
+
+.employee-card {
+  padding: 10px;
+}
+
+// Polaris ¿?
+.Polaris-Button > i {
+  margin-right: 5px;
 }

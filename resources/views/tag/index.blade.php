@@ -4,7 +4,7 @@
 
     <div class="container" style="margin-top:45px;">
         <h1>TAGS</h1>
-        <a class="btn btn-primary" href="{{ route('admin.tags.create')}}"><i class="fa fa-plus"></i> Create new tag</a>
+        <a class="Polaris-Button" href="{{ route('admin.tags.create')}}"><i class="fa fa-plus"></i> Create new tag</a>
         <br>
         <br>
         @if (session('status'))
@@ -25,8 +25,8 @@
                 @foreach($tags as $tag)
                 <tr>
                     <td><b>{{ $tag->name }}</b></td>
-                    <td><a class="btn btn-primary" href="{{ route('admin.tags.edit', $tag->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
-                    <td><a class="btn btn-primary" href="{{ route('admin.tags.show', $tag->id) }}"><i class="fa  fa-eye"></i> Show</a></td>
+                    <td><a class="Polaris-Button" href="{{ route('admin.tags.edit', $tag->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
+                    <td><a class="Polaris-Button" href="{{ route('admin.tags.show', $tag->id) }}"><i class="fa  fa-eye"></i> Show</a></td>
                 </tr>
                 @endforeach
             </tbody>

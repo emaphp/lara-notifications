@@ -9,15 +9,12 @@ export default class Employee extends Component {
 
     render() {
         return(
-            <div className="border border-primary" data={ this.props.user.id }>
-            <br></br>
+            <div className="Polaris-ResourceList__ItemWrapper">
+            <div className="employee-card" data={ this.props.user.id }>
                 <p><strong>Name:</strong> { this.props.user.name  }</p>
                 <p><strong>E-mail:</strong> {this.props.user.email }</p>
-            <br></br>
             </div>
-
-
-
+            </div>
         )
     }
 

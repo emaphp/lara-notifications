@@ -36,7 +36,7 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary"><i class="fa fa-plus-circle"></i> Add User</button>
+                <button class="Polaris-Button"><i class="fa fa-plus-circle"></i> Add User</button>
             </div>
         </form>
         <a class="btn btn-link" href="{{ route('admin.breakfast.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a>

@@ -64,11 +64,11 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary"><i class="fa fa-plus-circle"></i> Create</button>
+                <button class="Polaris-Button"><i class="fa fa-plus-circle"></i> Create</button>
             </div>
         </form>
 
-        <a class="btn btn-link" href="{{ route('admin.employees.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a>
+        <a class="Polaris-Button Polaris-Button--plain" href="{{ route('admin.employees.index') }}"><i class="fa fa-arrow-circle-left"></i> Back</a>
 
     </div>
 @endsection

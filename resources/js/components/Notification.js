@@ -13,7 +13,7 @@ export default class Notification extends Component {
         return(
             <div data={ this.props.notification.id }>
                 { this.props.notification.data.message }
-                <button className="btn btn-primary pull-right" onClick={ () => {
+                <button className="Polaris-Button pull-right" onClick={ () => {
                     this.props.clickMethod(this.state.notification.id, this.props.idUser);
                 } }>Mark as Read</button>
             </div>

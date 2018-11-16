@@ -42,7 +42,7 @@
                 <input type="date" name="birthdate" id="birthdate" class="form-control" value="{{ $profile->birthdate }}" required>
             </div>
             <div style="margin-top: 20px;">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                <button type="submit" class="Polaris-Button"><i class="fa fa-save"></i> Save</button>
             </div>
         </form>
         <div class="row">
