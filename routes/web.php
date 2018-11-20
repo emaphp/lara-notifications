@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/breakfast/add_user', 'Admin\BreakfastController@view_add_user')->name('breakfast.view_add_user');
         Route::get('/breakfast/remove_user', 'Admin\BreakfastController@view_remove_user')->name('breakfast.view_remove_user');
         Route::get('/breakfast/reassign_delegate', 'Admin\BreakfastController@view_reassign_delegate')->name('breakfast.view_reassign_delegate');
+        Route::get('/breakfast/postpone_delegate', 'Admin\BreakfastController@postpone_delegate')->name('breakfast.postpone_delegate');
         Route::post('/breakfast/add', 'Admin\BreakfastController@add_user')->name('breakfast.add_user');
         Route::post('/breakfast/remove', 'Admin\BreakfastController@remove_user')->name('breakfast.remove_user');
         Route::post('/breakfast/reassign', 'Admin\BreakfastController@reassign_delegate')->name('breakfast.reassign_delegate');

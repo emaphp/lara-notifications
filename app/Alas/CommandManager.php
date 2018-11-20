@@ -23,14 +23,15 @@ class CommandManager
         //%F0%9F%A4%AC
     }
 
-    public function findCommand($command) {
+    public function findCommand($args) {
         $cmd = null;
-        switch ($command) {
+        $params = explode(' ', $args);
+        switch ($params[0]) {
             case 'list':
                 $cmd = new ListCommand(new EmployeesQueue());
                 break;
             case 'cumple':
-                $cmd = new CumpleCommand();
+                $cmd = new CumpleCommand($params);
                 break;
         }
 
