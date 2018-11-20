@@ -63,7 +63,8 @@ class Handler extends ExceptionHandler
             $e = FlattenException::create($exception);
             $handler = new SymfonyExceptionHandler();
             $html = $handler->getHtml($e);
-            Mail::to('emmanuel@alasit.com')->send(new ExceptionOccurred($html));
+            $email = config('emailToReport.email'); //add next line in .env: EMAIL_TO_REPORT=<email>
+            Mail::to($email)->send(new ExceptionOccurred($html));
         } catch (Exception $ex) {
             dd($ex);
         }
