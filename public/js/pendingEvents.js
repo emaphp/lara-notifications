@@ -54265,6 +54265,12 @@ var Event = function (_Component) {
                     ' '
                 ),
                 _react2.default.createElement(
+                    'p',
+                    null,
+                    'STATUS: ',
+                    this.props.event.status
+                ),
+                _react2.default.createElement(
                     'button',
                     { className: 'btn btn-link', onClick: function onClick() {
                             window.location.href = (0, _route2.default)('events.show', [_this2.props.event.id]);
