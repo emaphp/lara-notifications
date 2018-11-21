@@ -1870,7 +1870,7 @@ var Notification = function (_Component) {
                 this.props.notification.data.message,
                 _react2.default.createElement(
                     "button",
-                    { className: "btn btn-primary pull-right", onClick: function onClick() {
+                    { className: "Polaris-Button pull-right", onClick: function onClick() {
                             _this2.props.clickMethod(_this2.state.notification.id, _this2.props.idUser);
                         } },
                     "Mark as Read"
