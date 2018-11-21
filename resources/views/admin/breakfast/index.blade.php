@@ -25,6 +25,14 @@
             </div>
         </div>
         <div id="breakfast-list"></div>
+        <div class="row" style="margin: 12px 0px;">
+            <div id="export" class="col-2 text-center" style="margin: 12px 0px;">
+                <a class="Polaris-Button" href="{{ route('admin.breakfast.exportXLS')}}"><i class="fa fa-download"></i>Export XLS</a>
+            </div>
+            <div id="export" class="col-2 text-center" style="margin: 12px 0px;">
+                <a class="Polaris-Button" href="{{ route('admin.breakfast.exportCSV')}}"><i class="fa fa-download"></i>Export CSV</a>
+            </div>
+        </div>
     </div>
 @endsection
 

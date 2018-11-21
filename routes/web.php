@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/breakfast/add', 'Admin\BreakfastController@add_user')->name('breakfast.add_user');
         Route::post('/breakfast/remove', 'Admin\BreakfastController@remove_user')->name('breakfast.remove_user');
         Route::post('/breakfast/reassign', 'Admin\BreakfastController@reassign_delegate')->name('breakfast.reassign_delegate');
+        Route::get('/breakfast/exportXLS', 'Admin\BreakfastController@exportXLS')->name('breakfast.exportXLS'); 
+        Route::get('/breakfast/exportCSV', 'Admin\BreakfastController@exportCSV')->name('breakfast.exportCSV'); 
         Route::resource('breakfast', 'Admin\BreakfastController');
     });
 
@@ -54,5 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
             return view('/employee/breakfast/index');
         })->name('breakfast');
     });
+
+
+   
 
 });
