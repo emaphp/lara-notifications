@@ -28,7 +28,7 @@ class LogExport implements FromCollection, WithCustomCsvSettings
                     return ['date' => $fecha, 'week' => $item->week, 'year'=> $item->year, 'name' => $delegate->name, ];
                 }
                 else{
-                    return ['date' => $fecha, 'week' => $item->week, 'year'=> $item->year, 'name' => 'a–b', ];
+                    return ['date' => $fecha, 'week' => $item->week, 'year'=> $item->year, 'name' => 'POSTPONED', ];
                 }
             });
         }
