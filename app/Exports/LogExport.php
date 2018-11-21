@@ -6,8 +6,9 @@ use App\BreakfastLog;
 use App\User;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 
-class LogExport implements FromCollection
+class LogExport implements FromCollection, WithCustomCsvSettings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -27,11 +28,18 @@ class LogExport implements FromCollection
                     return ['date' => $fecha, 'week' => $item->week, 'year'=> $item->year, 'name' => $delegate->name, ];
                 }
                 else{
-                    return ['date' => $fecha, 'week' => $item->week, 'year'=> $item->year, 'name' => 'POSTPONED', ];
+                    return ['date' => $fecha, 'week' => $item->week, 'year'=> $item->year, 'name' => 'a–b', ];
                 }
             });
         }
 
         return $employees;
+    }
+
+    public function getCsvSettings():array
+    {
+        return[
+            'use_bom' => TRUE
+        ];
     }
 }
