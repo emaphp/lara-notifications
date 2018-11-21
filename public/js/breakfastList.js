@@ -54139,7 +54139,12 @@ var BreakfastList = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (BreakfastList.__proto__ || Object.getPrototypeOf(BreakfastList)).call(this, props));
 
+        _this.renderItem = function (user) {
+            return _react2.default.createElement(_Employee2.default, { key: user.id, user: user });
+        };
+
         _this.state = {
+            loading: true,
             employeesList: []
         };
         return _this;
@@ -54152,7 +54157,8 @@ var BreakfastList = function (_Component) {
 
             _axios2.default.get((0, _route2.default)(this.props.employeesCountUrl)).then(function (response) {
                 _this2.setState({
-                    employeesList: response.data.employeesList
+                    employeesList: response.data.employeesList,
+                    loading: false
                 });
             }).catch(function (err) {
                 return console.log(err);
@@ -54161,15 +54167,21 @@ var BreakfastList = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            var resourceName = { singular: 'employees', plural: 'employees' };
+
             return _react2.default.createElement(
                 _polaris.AppProvider,
                 null,
                 _react2.default.createElement(
                     _polaris.Card,
                     { title: 'Employees Breakfast List', sectioned: true },
-                    this.state.employeesList.map(function (user) {
-                        return _react2.default.createElement(_Employee2.default, { key: user.id, user: user });
-                    })
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'Polaris-ResourceList' },
+                        this.state.employeesList.map(function (user) {
+                            return _react2.default.createElement(_Employee2.default, { key: user.id, user: user });
+                        })
+                    )
                 )
             );
         }
@@ -54226,34 +54238,78 @@ var Employee = function (_Component) {
     _createClass(Employee, [{
         key: "render",
         value: function render() {
-            return _react2.default.createElement(
-                "div",
-                { className: "border border-primary", data: this.props.user.id },
-                _react2.default.createElement("br", null),
-                _react2.default.createElement(
-                    "p",
-                    null,
+            if (this.props.user.postponed) {
+                return _react2.default.createElement(
+                    "div",
+                    { className: "border border-danger" },
                     _react2.default.createElement(
-                        "strong",
-                        null,
-                        "Name:"
-                    ),
-                    " ",
-                    this.props.user.name
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
+                        "div",
+                        { className: "Polaris-ResourceList__ItemWrapper" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "employee-card", data: this.props.user.id },
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                _react2.default.createElement(
+                                    "strong",
+                                    null,
+                                    "Name:"
+                                ),
+                                " ",
+                                this.props.user.name,
+                                _react2.default.createElement(
+                                    "span",
+                                    { className: "float-right text-danger" },
+                                    "Postponed Breakfast"
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                _react2.default.createElement(
+                                    "strong",
+                                    null,
+                                    "E-mail:"
+                                ),
+                                " ",
+                                this.props.user.email
+                            )
+                        )
+                    )
+                );
+            } else {
+                return _react2.default.createElement(
+                    "div",
+                    { className: "Polaris-ResourceList__ItemWrapper" },
                     _react2.default.createElement(
-                        "strong",
-                        null,
-                        "E-mail:"
-                    ),
-                    " ",
-                    this.props.user.email
-                ),
-                _react2.default.createElement("br", null)
-            );
+                        "div",
+                        { className: "employee-card", data: this.props.user.id },
+                        _react2.default.createElement(
+                            "p",
+                            null,
+                            _react2.default.createElement(
+                                "strong",
+                                null,
+                                "Name:"
+                            ),
+                            " ",
+                            this.props.user.name
+                        ),
+                        _react2.default.createElement(
+                            "p",
+                            null,
+                            _react2.default.createElement(
+                                "strong",
+                                null,
+                                "E-mail:"
+                            ),
+                            " ",
+                            this.props.user.email
+                        )
+                    )
+                );
+            }
         }
     }]);
 
