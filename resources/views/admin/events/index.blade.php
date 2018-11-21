@@ -20,8 +20,9 @@
                 <th>End Date</th>
                 <th>End Time</th>
                 <th>Place</th>
-                <th>Actions</th>
-                <th>Actions</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                         <td>{{ $event->end_date }}</td>
                         <td>{{ $event->end_time }}</td>
                         <td>{{ $event->place ? $event->place->name : '' }}</td>
+                        <td>{{ $event->status }}</td>
                         <td><a class="Polaris-Button" href="{{ route('admin.events.edit', $event->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
                         <td><a class="Polaris-Button" href="{{ route('admin.events.show', $event->id) }}"><i class="fa  fa-eye"></i> Show</a></td>
                     </tr>

@@ -43,21 +43,23 @@ class UpdateEventStatus extends Command
             $time = Carbon::now()->format('H:i');
       
             DB::table('events')->where('status','=','pending')
-                        ->where(function ($query) use ($date) {
-                            $query->where('start_date','<', $date)
-                                ->orWhere('start_date','=', $date);
+                        ->where(function ($query) use ($time,$date) {
+                            $query->where('start_date', '<', $date)
+                                  ->orWhere(function ($q) use ($time, $date) {
+                                      $q->Where('start_date', '=', $date)
+                                            ->where('start_time', '<', $time);
+                                  });
                         })
-                        ->whereTime('start_time','<', $time)
                         ->update(['status' =>'in_progress']);
 
 
             DB::table('events')->where('status','=','in_progress')
                         ->where(function ($query) use ($date, $time) {
                             $query->where('end_date','<', $date)
-                                ->orWhere(function($q) use ($date, $time) {
-                                    $q->whereDate('end_date','=', $date)
+                                  ->orWhere(function($q) use ($date, $time) {
+                                      $q->whereDate('end_date','=', $date)
                                         ->whereTime('end_time','<', $time);
-                                });
+                                  });
                             })
                         ->update(['status' =>'completed']);
     }
