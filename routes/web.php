@@ -62,3 +62,11 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 });
+
+Route::group(['prefix' => 'public'], function () {
+    Route::get('/events/{slug}', function($slug) {
+        return view('public.events.show', compact('slug'));
+    })->name('event');
+});
+
+

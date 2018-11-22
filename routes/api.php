@@ -31,3 +31,5 @@ Route::get('/breakfastList' , 'BreakfastListController@getBreakfastEmployeeList'
 Route::post('/twilio','TwilioController@messageResponse')->name('twilio');
 
 Route::get('/breakfastHistorial', 'BreakfastHistorialCrontroller@getBreakfastHistorial')->name('api.breakfastHistorial');
+
+Route::get('/events/{slug}' , 'EventController@getEvent')->name('api.eventDescription');
