@@ -55,6 +55,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/breakfast', function() {
             return view('/employee/breakfast/index');
         })->name('breakfast');
+
+        Route::get('/file-picker', function() {
+            return view('/employee/profile/index');
+        })->name('file-picker');
+        
+
+       
     });
 
 

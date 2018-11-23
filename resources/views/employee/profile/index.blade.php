@@ -27,6 +27,21 @@
                 <a class="Polaris-Button" href="{{ route('profile.edit', $profile->id) }}"><i class="fa fa-pencil"></i> Edit Profile</a>
             </div>
         </div>
+
+
+    <div class = "row">
+        
+        <div class="col-6" id="file-picker" style="margin-top:20px;" user-id={{auth()->user()->id}}></div>
     </div>
 
+
+    </div>
+
+
+@endsection
+
+@section('javascript')
+    @parent
+    <script src="//static.filestackapi.com/filestack-js/1.x.x/filestack.min.js"></script>
+    <script src="{{ asset('js/filePicker.js') }}"></script>
 @endsection
