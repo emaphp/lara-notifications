@@ -33,8 +33,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
 
         Route::resource('tags', 'Admin\TagController');
+
         Route::resource('employees', 'Admin\EmployeeController');
+
+        Route::post('/events/publish/{event}', 'Admin\EventController@publish')->name('events.publish');
+        Route::post('/events/unpublish/{event}', 'Admin\EventController@unpublish')->name('events.unpublish');
         Route::resource('events', 'Admin\EventController');
+
         Route::resource('places', 'Admin\PlaceController');
 
         Route::get('/breakfast/add_user', 'Admin\BreakfastController@view_add_user')->name('breakfast.view_add_user');
@@ -69,3 +74,11 @@ Route::group(['middleware' => 'auth'], function () {
    
 
 });
+
+Route::group(['prefix' => 'public'], function () {
+    Route::get('/events/{slug}', function($slug) {
+        return view('public.events.show', compact('slug'));
+    })->name('event');
+});
+
+

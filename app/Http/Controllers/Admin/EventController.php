@@ -173,4 +173,20 @@ class EventController extends Controller
         $event->save();
         return redirect()->route('admin.events.index')->with('status','Event canceled successfully.');  
     }
+
+    public function publish($id)
+    {
+        $event = Event::find($id);
+        $event->published_at = Carbon::now()->format('Y-m-d');
+        $event->save();
+        return redirect()->route('admin.events.index')->with('status','Event published successfully.');
+    }
+
+    public function unpublish($id)
+    {
+        $event = Event::find($id);
+        $event->published_at = null;
+        $event->save();
+        return redirect()->route('admin.events.index')->with('status','Event unpublished successfully.');
+    }
 }

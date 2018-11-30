@@ -18,4 +18,5 @@ mix.react('resources/js/app.js', 'public/js')
     .react('resources/js/breakfastList.js', 'public/js')
     .react('resources/js/breakfastHistorial.js', 'public/js')
     .react('resources/js/filePicker.js','public/js')
+    .react('resources/js/eventDescription.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');

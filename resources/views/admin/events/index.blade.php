@@ -23,6 +23,7 @@
                 <th>Status</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,19 @@
                         <td>{{ $event->status }}</td>
                         <td><a class="Polaris-Button" href="{{ route('admin.events.edit', $event->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
                         <td><a class="Polaris-Button" href="{{ route('admin.events.show', $event->id) }}"><i class="fa  fa-eye"></i> Show</a></td>
+                        <td>
+                            @if($event->published_at)
+                                <form action="{{ route('admin.events.unpublish',  $event->id) }}" method="post">
+                                @csrf
+                                    <button type="submit" class="Polaris-Button"><i class="fa fa-undo"></i> Unpublish event</button>
+                                </form>
+                            @else
+                                <form action="{{ route('admin.events.publish',  $event->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="Polaris-Button"><i class="fa fa-share"></i> Publish event</button>
+                                </form>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
