@@ -11,10 +11,8 @@ export default class BreakfastHistorial extends Component {
         return(
             <div className="Polaris-ResourceList__ItemWrapper">
                 <div className="employee-card" data={ this.props.user.id }>
-                    <br></br>
-                        <p><strong>Fecha:</strong> {this.props.user.date }</p>
-                        <p><strong>Name:</strong> { this.props.user.name  }</p>
-                    <br></br>
+                    <p><strong>Fecha:</strong> {this.props.user.date }</p>
+                    <p><strong>Name:</strong> { this.props.user.name  }</p>
                 </div>
             </div>
 
