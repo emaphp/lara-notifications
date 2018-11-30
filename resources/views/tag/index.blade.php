@@ -17,14 +17,14 @@
             <thead class="thead-dark">
                 <tr>
                 <th scope="col"> Name</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col">Actions</th>
+                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($tags as $tag)
                 <tr>
-                    <td><b>{{ $tag->name }}</b></td>
+                    <td>{{ $tag->name }}</td>
                     <td><a class="Polaris-Button" href="{{ route('admin.tags.edit', $tag->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
                     <td><a class="Polaris-Button" href="{{ route('admin.tags.show', $tag->id) }}"><i class="fa  fa-eye"></i> Show</a></td>
                 </tr>

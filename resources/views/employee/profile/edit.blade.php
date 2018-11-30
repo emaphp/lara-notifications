@@ -37,10 +37,6 @@
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" class="form-control" value="{{ $profile->user->email }}" required>
             </div>
-            <div class="form-group">
-                <label for="birthdate">Birthdate:</label>
-                <input type="date" name="birthdate" id="birthdate" class="form-control" value="{{ $profile->birthdate }}" required>
-            </div>
             <div style="margin-top: 20px;">
                 <button type="submit" class="Polaris-Button"><i class="fa fa-save"></i> Save</button>
             </div>

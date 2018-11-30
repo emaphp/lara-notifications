@@ -5,7 +5,7 @@
     <h1>BREAKFAST</h1>
     <div id="breakfast-list"></div>
 
-    <div id="breakfast-historial"></div>
+    <div id="breakfast-historial" style="margin-top:45px;"></div>
 
 </div>
 @endsection

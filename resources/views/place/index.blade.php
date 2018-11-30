@@ -21,16 +21,16 @@
             <th scope="col"> Name</th>
             <th scope="col">Description</th>
             <th scope="col">Type</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col">Actions</th>
+            <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($places as $place)
             <tr>
-                <td><b>{{ $place->name }}</b></td>
-                <td><b>{{ $place->description }}</b></td>
-                <td><b>{{ $place->type }}</b></td>
+                <td>{{ $place->name }}</td>
+                <td>{{ $place->description }}</td>
+                <td>{{ $place->type }}</td>
                 <td><a class="Polaris-Button" href="{{ route('admin.places.edit', $place->id) }}"><i class="fa fa-pencil"></i> Edit</a></td>
                 <td><a class="Polaris-Button" href="{{ route('admin.places.show', $place->id) }}"><i class="fa  fa-eye"></i> Show</a></td>
             </tr>

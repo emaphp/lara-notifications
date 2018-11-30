@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        <div class="justify-content-center">
+        <div class="container">
             @if (Auth::user()->type == 'admin')
                 <div id="employees-quantity"></div>
             @endif

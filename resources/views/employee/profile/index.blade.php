@@ -30,7 +30,7 @@
 
 
     <div class = "row">        
-        <div  id="file-picker" style="margin-top:20px;" user-id={{auth()->user()->id}}></div>
+        <div id="file-picker" style="margin-top:20px;" user-id={{auth()->user()->id}}></div>
     </div>
 
 

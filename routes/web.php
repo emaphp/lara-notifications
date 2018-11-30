@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('tags', 'Admin\TagController');
 
         Route::resource('employees', 'Admin\EmployeeController');
+        Route::post('/employees/enable/{user}', 'Admin\EmployeeController@enable')->name('employees.enable');
 
         Route::post('/events/publish/{event}', 'Admin\EventController@publish')->name('events.publish');
         Route::post('/events/unpublish/{event}', 'Admin\EventController@unpublish')->name('events.unpublish');

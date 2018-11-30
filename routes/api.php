@@ -21,7 +21,7 @@ Route::get('/notifications/{user_id}', 'NotificationController@getUnreadNotifica
 
 Route::put('/notifications/{notification_id}/{user_id}', 'NotificationController@markNotificationAsRead')->name('api.markNotificationAsRead');
 
-Route::get('/employees/quantity', 'EmployeeController@getEmployeeQuantity');
+Route::get('/employees/quantity', 'EmployeeController@getEmployeeQuantity')->name('api.employeesQuantity');
 //Route::apiResource('employees', 'EmployeeController');
 
 Route::get('/pending_events/{year}/{month}','EventListController@getPendingEvents')->name('api.pendingEvents');

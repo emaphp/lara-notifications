@@ -21,9 +21,9 @@
                 <th>End Time</th>
                 <th>Place</th>
                 <th>Status</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Actions</th>
+                <th>Actions</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>

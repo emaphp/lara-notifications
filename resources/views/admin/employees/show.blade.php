@@ -35,7 +35,17 @@
                 <div class="col-6">
                     <a class="Polaris-Button" href="{{ route('admin.employees.edit', $user->id) }}"><i class="fa fa-pencil"></i> Edit User</a>
                 </div>
+            @else
+                <div class="col-6">
+                    <form action="{{route('admin.employees.enable', $user->id )}}" method="post">
+                        <div>
+                            @csrf
+                            <button class="Polaris-Button" type="submit"><i class="fa fa-plus-circle"></i> Enable User</button>
+                        </div>
+                    </form>
+                </div>
             @endif
+         
         </div>
 
         <div class="row">

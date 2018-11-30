@@ -14,7 +14,7 @@ export default class EmployeesQuantity extends Component {
 
     componentDidMount() {
         var self = this;
-        axios.get(this.props.employeesCountUrl)
+        axios.get(route(this.props.employeesCountUrl))
             .then(response => {
                 self.setState({ quantity: response.data.quantity });
             })
@@ -35,5 +35,5 @@ export default class EmployeesQuantity extends Component {
 
 
 if (document.getElementById('employees-quantity')) {
-    ReactDOM.render(<EmployeesQuantity employeesCountUrl={'/api/employees/quantity'}/>, document.getElementById('employees-quantity'));
+    ReactDOM.render(<EmployeesQuantity employeesCountUrl={'api.employeesQuantity'}/>, document.getElementById('employees-quantity'));
 }

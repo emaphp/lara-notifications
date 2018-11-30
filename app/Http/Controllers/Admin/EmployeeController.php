@@ -134,7 +134,7 @@ class EmployeeController extends Controller
         $profile->last_name = $request->get('last_name')? $request->get('last_name') : '';
         $profile->telephone = $request->get('telephone')? $request->get('telephone') : '';
         $profile->github_account = $request->get('github_account')? $request->get('github_account') : '';
-        $profile->birthdate = $request->get('birthdate')? $request->get('birthdate') : '';
+        $profile->birthdate = $request->get('birthdate')? $request->get('birthdate') : NULL;
         $profile->save();
 
         return redirect()->route('admin.employees.index')->with('status', 'User edited successfully.');
@@ -152,4 +152,11 @@ class EmployeeController extends Controller
         $user->delete();
         return redirect()->route('admin.employees.index')->with('status','Employee has ben successfully disabled');
     }
+
+    public function enable($id)
+    {
+        User::withTrashed()->where('id',$id)->restore();
+        return redirect()->route('admin.employees.index')->with('status','Employee has ben successfully enabled');
+    }
+
 }
