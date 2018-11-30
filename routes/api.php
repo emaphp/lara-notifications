@@ -31,3 +31,7 @@ Route::get('/breakfastList' , 'BreakfastListController@getBreakfastEmployeeList'
 Route::post('/twilio','TwilioController@messageResponse')->name('twilio');
 
 Route::get('/breakfastHistorial', 'BreakfastHistorialCrontroller@getBreakfastHistorial')->name('api.breakfastHistorial');
+
+Route::get('/filePickerComponent', 'FilePickerController@getFilePicker')->name('api.filePicker'); 
+
+Route::put('/saveProfileFilePickerComponent', 'FilePickerController@setFilePicker')->name('api.setFilePicker'); 

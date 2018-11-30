@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\BreakfastLog;
 use App\User;
 use Illuminate\Http\Request;
+use App\Exports\LogExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Alas\EmployeesQueue;
 
@@ -181,6 +183,15 @@ class BreakfastController extends Controller
     }
 
 
+    public function exportXLS()
+    {
+        return Excel::download(new LogExport, 'breakfastLogs_xls.xls');
+    }
+
+    public function exportCSV()
+    {
+        return Excel::download(new LogExport, 'breakfastLogs_csv.csv');
+    }
 
 
 }
