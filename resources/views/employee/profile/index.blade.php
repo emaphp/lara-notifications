@@ -29,9 +29,8 @@
         </div>
 
 
-    <div class = "row">
-        
-        <div class="col-6" id="file-picker" style="margin-top:20px;" user-id={{auth()->user()->id}}></div>
+    <div class = "row">        
+        <div  id="file-picker" style="margin-top:20px;" user-id={{auth()->user()->id}}></div>
     </div>
 
 

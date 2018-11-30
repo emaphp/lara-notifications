@@ -31,10 +31,10 @@ export default class FilePicker extends Component {
         return(
             <div className="Polaris-ResourceList__ItemWrapper">
                 <div className="employee-card" data={ this.props.profile.id }>
-                    <p>FOTO: {this.props.profile.picture } </p> 
+                    <p><img src = {this.props.profile.picture }  width="300" height="300" ></img></p> 
                 </div>
                 <div>
-                    <button onClick={this.handleClick}>Click!</button>
+                    <button className="Polaris-Button" onClick={this.handleClick}><i className="fa fa-upload"></i>Upload photo</button>
                 </div>
             </div>
         )
